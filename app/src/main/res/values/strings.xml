@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">SweetlandApp</string>
+
+    <string name="mainactivity_text">برای یک تجربه ی شیرین آماده ای؟</string>
+    <string name="mainactivity_search_hint">جستجو</string>
+    <string name="mainactivity_list_sweets">لیست شیرینی ها</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_me">درباره ما</string>
+    <string name="material">برای پختن این شیرینی به چه موادی نیاز دارم؟</string>
+    <string name="making">مراحل تهیه این شیرینی به چه شکله؟</string>
+    <string name="text_about_me"> در سوئیت لند
+    \n
+  دستور تهیه بهترین شیرینی ها و کیک هایی که شما به آسانی می توانید در منزل تهیه کنید، می یابید
+    \n
+        دستوراتی مانند:
+    \n
+ </string>
+    <string name="about_me_continue">
+        شیرینی کره ای
+    \n
+   شیرینی نارگیلی
+    \n
+   شیرینی مربایی
+    \n
+   شیرینی زنجبیلی
+    \n
+  شیرینی قرابیه تبریز
+    \n
+        و …
+    \n
+    </string>
+    <string name="source">مرجع این اپلیکشن: سایت irancook.ir</string>
+    <string name="internet">لطفا به اینترنت متصل شوید</string>
+    <string name="exit">خروج </string>
+    <string name="noexit">نه، دستم خورد </string>
+    <string name="yesexit">بله </string>
+    <string name="exitmessage"> واقعا می خوای بری؟</string>
+    <string name="fav_sweets_text">شیرینی های مورد علاقه</string>
+    <string name="listOfSweets">لیست شیرینی ها</string>
+    <string name="listOffav">مورد علاقه ها</string>
+    <string name="me">درباره ی ما</string>
 </resources>
