@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/sweet_fragment_recepie_image"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="260dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ic_heart"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.917"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +74,7 @@
                 android:fontFamily="@font/vazir"
                 android:gravity="center_horizontal"
                 tools:text="شیرینی نارگیلی"
-                android:textColor="@color/main_writing_color"
+                android:textColor="@color/colorAccent"
                 android:textSize="28sp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -114,7 +114,7 @@
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
-                tools:text="@string/material"
+                android:text="@string/material"
                 android:textColor="@color/main_writing_color"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
