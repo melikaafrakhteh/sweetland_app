@@ -42,7 +42,7 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
         val card = itemView.findViewById<CardView>(R.id.item_card)!!
 
         fun setData(model: SweetsModel, position: Int) {
-            name.text = model.image
+            name.text = model.name
 
             image.loadingImage(model.image, getProgressDrawable(image.context))
 

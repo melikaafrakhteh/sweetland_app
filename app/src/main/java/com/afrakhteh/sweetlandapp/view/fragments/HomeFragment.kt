@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.afrakhteh.sweetlandapp.R
@@ -33,6 +34,34 @@ class HomeFragment : Fragment() {
         viewModel.refreshList()
 
         setupRecycler()
+        setupViewModel()
+    }
+
+    private fun setupViewModel() {
+        viewModel.sweetList.observe(viewLifecycleOwner, Observer { sweets ->
+            sweets?.let {
+                home_fragment_rvRecycler.visibility = View.VISIBLE
+                homeAdapter.updateList(sweets)
+            }
+        })
+
+        viewModel.loadingError.observe(viewLifecycleOwner, Observer {
+
+            sweet ->
+            sweet?.let {
+                home_fragment_tv_error.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, Observer { sweet ->
+            sweet?.let {
+                home_fragment_progressbar_loading.visibility = if (it) View.VISIBLE else View.GONE
+                if (it) {
+                    home_fragment_rvRecycler.visibility = View.GONE
+                    home_fragment_tv_error.visibility = View.GONE
+                }
+            }
+        })
     }
 
     private fun setupRecycler() {

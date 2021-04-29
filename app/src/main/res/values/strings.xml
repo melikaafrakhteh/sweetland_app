@@ -19,15 +19,15 @@
     \n
  </string>
     <string name="about_me_continue">
-        شیرینی کره ای
+        کیک شش تخم مرغی
     \n
-   شیرینی نارگیلی
+   بستنی موزی
     \n
-   شیرینی مربایی
+   کیک برنجی
     \n
-   شیرینی زنجبیلی
+   بستنی هلو
     \n
-  شیرینی قرابیه تبریز
+  شیرینی چرخی
     \n
         و …
     \n
@@ -44,4 +44,5 @@
     <string name="me">درباره ی ما</string>
     <string name="title_activity_splashscreen">FullscreenActivity</string>
     <string name="search_sweets_text">نتایج جستجو</string>
+    <string name="mainactivity_list_error">خطایی در دریافت اطلاعات رخ داده است</string>
 </resources>
