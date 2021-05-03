@@ -1,16 +1,20 @@
 package com.afrakhteh.sweetlandapp.view.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.data.model.SweetsModel
+import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
 import com.afrakhteh.sweetlandapp.view.fragments.HomeFragmentDirections
@@ -36,7 +40,7 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
 
     override fun getItemCount() = sweetList.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.itemlist_textView_showsweetname)!!
         val image = itemView.findViewById<ImageView>(R.id.itemlist_imageView_showsweetimage)!!
         val card = itemView.findViewById<CardView>(R.id.item_card)!!
@@ -47,8 +51,18 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
             image.loadingImage(model.image, getProgressDrawable(image.context))
 
             card.setOnClickListener{
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
-                Navigation.findNavController(it).navigate(action)
+                val action = R.id.action_homeFragment_to_detailFragment
+                var itemId = model.id
+                var bundle = Bundle()
+
+                bundle.putInt(Constants.ID,itemId)
+                bundle.putString(Constants.NAME,model.name)
+                bundle.putString(Constants.IMAGE,model.image)
+                bundle.putString(Constants.DESC,model.description)
+                bundle.putString(Constants.RECIPE,model.recipe)
+                bundle.putString(Constants.TIME,model.time)
+
+                it.findNavController().navigate(action,bundle)
             }
         }
 

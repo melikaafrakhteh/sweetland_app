@@ -52,8 +52,7 @@
             android:textSize="22sp"
             android:layout_marginTop="24dp"
             android:textColor="@color/secondary_writing_color"
-            android:text="@string/source"
-            android:layout_marginRight="24dp"/>
+            android:text="@string/source" />
 
     </LinearLayout>
 

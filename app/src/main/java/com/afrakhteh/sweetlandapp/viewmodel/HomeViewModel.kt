@@ -40,9 +40,8 @@ class HomeViewModel : ViewModel() {
                         loading.value = false
                         e.printStackTrace()
                     }
-
                 }
-                ))
+        ))
     }
 
     override fun onCleared() {
