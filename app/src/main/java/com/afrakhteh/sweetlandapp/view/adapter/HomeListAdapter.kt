@@ -58,7 +58,10 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
                 bundle.putInt(Constants.ID,itemId)
                 bundle.putString(Constants.NAME,model.name)
                 bundle.putString(Constants.IMAGE,model.image)
-                bundle.putString(Constants.DESC,model.description)
+
+                var desc = model.description
+
+                bundle.putString(Constants.DESC, desc.toString())
                 bundle.putString(Constants.RECIPE,model.recipe)
                 bundle.putString(Constants.TIME,model.time)
 

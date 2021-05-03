@@ -37,4 +37,8 @@ class MainActivity : AppCompatActivity() {
     private fun setNavigation() {
         main_activity_bottonnavigation_menu.setupWithNavController(fragment.findNavController())
     }
+    fun setBottomNavigationVisibility(visibility: Int) {
+        // get the reference of the bottomNavigationView and set the visibility.
+        main_activity_bottonnavigation_menu.visibility = visibility
+    }
 }

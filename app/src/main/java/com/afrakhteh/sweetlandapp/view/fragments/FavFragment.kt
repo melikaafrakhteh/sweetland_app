@@ -17,7 +17,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FavFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FavFragment : Fragment() {
+class FavFragment : BaseFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -29,6 +29,7 @@ class FavFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    override var bottomNavigationViewVisibility  = View.VISIBLE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

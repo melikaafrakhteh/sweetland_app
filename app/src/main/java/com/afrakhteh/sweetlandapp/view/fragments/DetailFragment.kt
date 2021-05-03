@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,10 +14,12 @@ import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
 import com.afrakhteh.sweetlandapp.viewmodel.DetailViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment() {
 
     private var sweetId = 0
     private lateinit var sweetName: String
@@ -26,6 +29,8 @@ class DetailFragment : Fragment() {
     private lateinit var sweetTime : String
 
     private lateinit var viewModel: DetailViewModel
+
+    override var bottomNavigationViewVisibility  = View.GONE
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +49,10 @@ class DetailFragment : Fragment() {
 
         showViewModelData()
         setCliCk(view)
+
+
+        //val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.main_activity_bottonnavigation_menu)!!
+       // bottomNavigationView.visibility = View.GONE
     }
 
     private fun setCliCk(view: View) {

@@ -15,11 +15,13 @@ import com.afrakhteh.sweetlandapp.view.adapter.HomeListAdapter
 import com.afrakhteh.sweetlandapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var homeAdapter: HomeListAdapter
     private val sweetList: ArrayList<SweetsModel> = ArrayList()
+
+    override var bottomNavigationViewVisibility  = View.VISIBLE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
