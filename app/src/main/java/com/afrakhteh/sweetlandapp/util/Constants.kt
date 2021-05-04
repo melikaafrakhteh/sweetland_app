@@ -9,5 +9,8 @@ class Constants {
         const val DESC = "desc"
         const val RECIPE = "recipe"
         const val IMAGE = "img"
+
+        const val DATABASE_NAME = "fave_db"
+        const val DATABASE_VERSION = 1
     }
 }
