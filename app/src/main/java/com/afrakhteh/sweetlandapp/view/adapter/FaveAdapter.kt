@@ -45,7 +45,7 @@ class FaveAdapter(private val context: Context, private val faveList: List<FaveM
                 val faveID = model.id
                 val bundle = Bundle()
                 bundle.getInt(Constants.ID, faveID)
-                Navigation.findNavController(it).navigate(action,bundle)
+                Navigation.findNavController(it).navigate(action, bundle)
             }
         }
 

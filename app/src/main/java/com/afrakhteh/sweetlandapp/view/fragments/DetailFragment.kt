@@ -32,6 +32,8 @@ class DetailFragment : BaseFragment() {
 
     override var bottomNavigationViewVisibility  = View.GONE
 
+    private var isItFave = true
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -71,6 +73,11 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun faveItem() {
+
+        if (isItFave){
+
+            fra_sweet_rece_fave_btn
+        }
 
     }
 
