@@ -1,14 +1,17 @@
 package com.afrakhteh.sweetlandapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.afrakhteh.sweetlandapp.data.database.FaveDao
 import com.afrakhteh.sweetlandapp.data.model.FaveModel
 
-class FaveViewModel : ViewModel() {
+public class FaveViewModel(dao: FaveDao) : ViewModel() {
 
-     var listOfFave = MutableLiveData<List<FaveModel>>()
+    val showAllFaves: LiveData<List<FaveModel>>
 
-    fun addToFave(){
-
+    init {
+        showAllFaves = dao.showAllFaves()
     }
+
+
 }

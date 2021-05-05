@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/simple_layout">
 
-            <TextView
+            <ImageButton
                 android:id="@+id/fra_sweet_rece_fave_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

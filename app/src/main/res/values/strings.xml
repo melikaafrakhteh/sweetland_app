@@ -45,4 +45,6 @@
     <string name="title_activity_splashscreen">FullscreenActivity</string>
     <string name="search_sweets_text">نتایج جستجو</string>
     <string name="mainactivity_list_error">خطایی در دریافت اطلاعات رخ داده است</string>
+    <string name="add_to_fave">به لیست علاقه مندی ها اضافه شد</string>
+    <string name="remove_to_fave">از لیست علاقه مندی ها حذف شد</string>
 </resources>

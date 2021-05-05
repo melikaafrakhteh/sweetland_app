@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.afrakhteh.sweetlandapp.R
+import com.afrakhteh.sweetlandapp.data.model.FaveModel
 import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
 import com.afrakhteh.sweetlandapp.viewmodel.DetailViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 
@@ -23,14 +21,15 @@ class DetailFragment : BaseFragment() {
 
     private var sweetId = 0
     private lateinit var sweetName: String
-    private lateinit var sweetImage : String
-    private lateinit var sweetRecipe : String
-    private lateinit var sweetDesc : String
-    private lateinit var sweetTime : String
+    private lateinit var sweetImage: String
+    private lateinit var sweetRecipe: String
+    private lateinit var sweetDesc: String
+    private lateinit var sweetTime: String
+    private lateinit var faveModel: FaveModel
 
     private lateinit var viewModel: DetailViewModel
 
-    override var bottomNavigationViewVisibility  = View.GONE
+    override var bottomNavigationViewVisibility = View.GONE
 
     private var isItFave = true
 
@@ -47,14 +46,14 @@ class DetailFragment : BaseFragment() {
 
         getBundles()
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetchData(sweetId,sweetDesc,sweetImage,sweetName,sweetRecipe,sweetTime)
+        viewModel.fetchData(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
+
+        faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
 
         showViewModelData()
         setCliCk(view)
 
 
-        //val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.main_activity_bottonnavigation_menu)!!
-       // bottomNavigationView.visibility = View.GONE
     }
 
     private fun setCliCk(view: View) {
@@ -74,28 +73,37 @@ class DetailFragment : BaseFragment() {
 
     private fun faveItem() {
 
-        if (isItFave){
+        if (isItFave) {
+            viewModel.addToFave(faveModel)
+            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart_full)
+            isItFave = false
+            Toast.makeText(context,getString(R.string.add_to_fave),Toast.LENGTH_LONG).show()
+        }
+        else if (!isItFave){
+            viewModel.RemoveFave(sweetId)
+            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart)
+            isItFave = true
 
-            fra_sweet_rece_fave_btn
+            Toast.makeText(context,getString(R.string.remove_to_fave),Toast.LENGTH_LONG).show()
         }
 
     }
 
-    private fun showViewModelData( ) {
+    private fun showViewModelData() {
         viewModel.detail.observe(viewLifecycleOwner, Observer { model ->
             model?.let {
 
-                    sweet_fragment_recepie_image.loadingImage(sweetImage, getProgressDrawable(requireContext()))
-                    fra_sweet_rece_name.text = sweetName
-                    fra_sweet_rece_time_show.text = sweetTime
-                    fra_sweet_rece_material_input.text = sweetRecipe
-                    fra_sweet_rece_making.text = sweetDesc
+                sweet_fragment_recepie_image.loadingImage(sweetImage, getProgressDrawable(requireContext()))
+                fra_sweet_rece_name.text = sweetName
+                fra_sweet_rece_time_show.text = sweetTime
+                fra_sweet_rece_material_input.text = sweetRecipe
+                fra_sweet_rece_making.text = sweetDesc
 
             }
         })
     }
 
-    private fun getBundles(){
+    private fun getBundles() {
         sweetId = arguments?.getInt(Constants.ID)!!
         sweetName = arguments?.getString(Constants.NAME)!!
         sweetImage = arguments?.getString(Constants.IMAGE)!!

@@ -60,6 +60,8 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
 
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    kapt 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
