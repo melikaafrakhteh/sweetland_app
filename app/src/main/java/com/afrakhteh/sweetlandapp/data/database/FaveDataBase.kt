@@ -14,7 +14,7 @@ abstract class FaveDataBase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private lateinit var INSTANCE: FaveDataBase
+        private  var INSTANCE: FaveDataBase? = null
 
         private val LOCK = Any()
 
