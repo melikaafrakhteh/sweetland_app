@@ -39,7 +39,6 @@ android {
 def lifeCycleExtensionVersion = '1.1.1'
 def supportVersion = '28.0.0'
 def retrofitVersion = '2.9.0'
-def glideVersion = '4.9.0'
 def rxJavaVersion = '2.1.1'
 def roomVersion = '2.3.0'
 def navVersion = '2.3.5'
@@ -81,11 +80,13 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation "com.android.support:palette-v7:$supportVersion"
 
     implementation "androidx.preference:preference:$preferencesVersion"
 
     implementation 'com.wang.avi:library:2.1.3'
+
 }

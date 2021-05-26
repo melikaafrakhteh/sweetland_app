@@ -3,7 +3,8 @@
     <string name="app">Sweetland</string>
 
     <string name="mainactivity_text">برای یک تجربه ی شیرین آماده ای؟</string>
-    <string name="mainactivity_search_hint">جستجو</string>
+    <string name="mainactivity_search_hint"> رفتن به صفحه ی جستجو</string>
+    <string name="search_search_hint">جستجو</string>
     <string name="mainactivity_list_sweets">لیست شیرینی ها</string>
 
     <!-- TODO: Remove or change this placeholder text -->

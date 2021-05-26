@@ -1,15 +1,20 @@
 package com.afrakhteh.sweetlandapp.view.fragments
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.data.database.FaveDao
+import com.afrakhteh.sweetlandapp.data.database.FaveDataBase
 import com.afrakhteh.sweetlandapp.data.model.FaveModel
+import com.afrakhteh.sweetlandapp.repository.FaveRepository
 import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.view.adapter.FaveAdapter
 import com.afrakhteh.sweetlandapp.viewmodel.FaveViewModel
@@ -24,8 +29,10 @@ class FavFragment : BaseFragment() {
     private lateinit var faveAdapter: FaveAdapter
     private var faveList: List<FaveModel> = ArrayList()
 
-    val dao = FaveDao()
-    val factory = FaveViewModelFactory(dao)
+
+    private val db = FaveDataBase(requireContext())
+    private val repository = FaveRepository(db)
+    private val factory = FaveViewModelFactory(repository)
     lateinit var viewModel: FaveViewModel
 
     override fun onCreateView(
@@ -41,10 +48,7 @@ class FavFragment : BaseFragment() {
 
         uid = arguments?.getInt(Constants.ID)!!
 
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            defaultViewModelProviderFactory
-        ).get(FaveViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,factory).get(FaveViewModel::class.java)
 
         setupRecyclerView()
         getAllData()

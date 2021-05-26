@@ -14,12 +14,12 @@ abstract class FaveDataBase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private  var INSTANCE: FaveDataBase? = null
+        private var INSTANCE: FaveDataBase? = null
 
         private val LOCK = Any()
 
         operator fun invoke(context: Context) =
-                INSTANCE ?: synchronized(LOCK){
+                INSTANCE ?: synchronized(LOCK) {
                     INSTANCE ?: buidDB(context).also {
                         INSTANCE = it
                     }
@@ -27,7 +27,7 @@ abstract class FaveDataBase : RoomDatabase() {
 
         private fun buidDB(context: Context) = Room.databaseBuilder(context,
                 FaveDataBase::class.java,
-                    Constants.DATABASE_NAME).build()
+                Constants.DATABASE_NAME).build()
 
     }
 }

@@ -1,12 +1,14 @@
 package com.afrakhteh.sweetlandapp.view.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.data.model.SweetsModel
@@ -21,7 +23,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var homeAdapter: HomeListAdapter
     private val sweetList: ArrayList<SweetsModel> = ArrayList()
 
-    override var bottomNavigationViewVisibility  = View.VISIBLE
+    override var bottomNavigationViewVisibility = View.VISIBLE
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -37,6 +39,17 @@ class HomeFragment : BaseFragment() {
 
         setupRecycler()
         setupViewModel()
+        setupSearchBar()
+    }
+
+    private fun setupSearchBar() {
+        home_fragment_tv_searchbar.setOnClickListener {
+
+            val action = R.id.action_homeFragment_to_searchFragment
+            Navigation.findNavController(it).navigate(action)
+
+        }
+
     }
 
     private fun setupViewModel() {

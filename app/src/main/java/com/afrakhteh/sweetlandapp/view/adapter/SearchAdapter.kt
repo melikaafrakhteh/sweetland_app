@@ -7,55 +7,57 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.R
-import com.afrakhteh.sweetlandapp.data.model.SweetsModel
+import com.afrakhteh.sweetlandapp.data.model.SearchModel
 import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
+import com.afrakhteh.sweetlandapp.view.fragments.SearchFragmentDirections
+
+class SearchAdapter(
+        private val context: Context,
+        private val searchList: ArrayList<SearchModel>
+) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
 
-class HomeListAdapter(private val context: Context, private val sweetList: ArrayList<SweetsModel>)
-    : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
-
-    fun updateList( newList: List<SweetsModel>){
-        sweetList.clear()
-        sweetList.addAll(newList)
+    fun updateSearch(newList: List<SearchModel>) {
+        searchList.clear()
+        searchList.addAll(newList)
         notifyDataSetChanged()
     }
 
+    override fun getItemCount() = searchList.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.sweetlist_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.sweet_second_item_layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val model: SweetsModel = sweetList[position]
-        holder.setData(model, position)
+        val model = searchList[position]
+        holder.setItem(model, position)
     }
 
-    override fun getItemCount() = sweetList.size
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name = itemView.findViewById<TextView>(R.id.itemlist_textView_showsweetname)!!
-        val image = itemView.findViewById<ImageView>(R.id.itemlist_imageView_showsweetimage)!!
-        val card = itemView.findViewById<CardView>(R.id.item_card)!!
 
-        fun setData(model: SweetsModel, position: Int) {
-            name.text = model.name
+        private val title: TextView = itemView.findViewById(R.id.second_layout_name_tv)
+        private val time: TextView = itemView.findViewById(R.id.second_layout_time_tv)
+        private val imageView: ImageView = itemView.findViewById(R.id.second_layout_image_iv)
 
-            image.loadingImage(model.image, getProgressDrawable(image.context))
 
-            card.setOnClickListener{
-                val action = R.id.action_homeFragment_to_detailFragment
-                var itemId = model.id
+        fun setItem(model: SearchModel, position: Int) {
+            title.text = model.name
+            time.text = model.time
+
+            imageView.loadingImage(model.image, getProgressDrawable(context))
+
+            itemView.setOnClickListener {
+                val action:Int = R.id.action_searchFragment_to_detailFragment
                 var bundle = Bundle()
 
-                bundle.putInt(Constants.ID,itemId)
+                bundle.getInt(Constants.ID,position)
                 bundle.putString(Constants.NAME,model.name)
                 bundle.putString(Constants.IMAGE,model.image)
                 bundle.putString(Constants.DESC, model.description)
@@ -64,7 +66,11 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
 
                 it.findNavController().navigate(action,bundle)
             }
+
+
         }
 
     }
+
+
 }
