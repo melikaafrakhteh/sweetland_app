@@ -18,15 +18,8 @@ import com.afrakhteh.sweetlandapp.util.loadingImage
 
 class SearchAdapter(
     private val context: Context,
-    private val searchList: ArrayList<SearchModel>
+    private val searchList: List<SearchModel>
 ) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-
-
-    fun updateSearch(newList: List<SearchModel>) {
-        searchList.clear()
-        searchList.addAll(newList)
-        notifyDataSetChanged()
-    }
 
     override fun getItemCount() = searchList.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

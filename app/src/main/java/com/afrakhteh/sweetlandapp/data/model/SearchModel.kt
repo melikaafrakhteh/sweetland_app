@@ -1,7 +1,6 @@
 package com.afrakhteh.sweetlandapp.data.model
 
 data class SearchModel(
-
         var id: Int,
         var description: String,
         var image: String,

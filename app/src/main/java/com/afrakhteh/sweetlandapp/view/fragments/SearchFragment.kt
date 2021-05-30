@@ -1,18 +1,23 @@
 package com.afrakhteh.sweetlandapp.view.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.data.model.SearchModel
 import com.afrakhteh.sweetlandapp.view.adapter.SearchAdapter
+import com.afrakhteh.sweetlandapp.view.clasess.SearchDiffUtilCallBack
 import com.afrakhteh.sweetlandapp.viewmodel.SearchViewModel
+import com.jakewharton.rxbinding2.widget.textChanges
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.concurrent.TimeUnit
 
 
 class SearchFragment : BaseFragment() {
@@ -40,25 +45,39 @@ class SearchFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         viewModel.loadingData()
 
-        searchAdapter = SearchAdapter(requireContext(),searchList)
         setupRecycler()
-        viewModelObserver()
+        setupSearch()
+
     }
 
-    private fun viewModelObserver() {
-        viewModel.searchList.observe(viewLifecycleOwner, Observer { list ->
-            list?.let {
-                searchAdapter.updateSearch(list)
+    @SuppressLint("CheckResult")
+    private fun setupSearch() {
+        search_edit.
+                textChanges()
+            .debounce(500,TimeUnit.MILLISECONDS)
+            .subscribe {
+                viewModel
+                    .search(it.toString())
+                    .subscribeOn(Schedulers.computation())
+
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        val diffResult = DiffUtil.calculateDiff(
+                            SearchDiffUtilCallBack(viewModel.searchList,viewModel.filterList)
+                        )
+                        viewModel.searchList.clear()
+
+                        viewModel.searchList.addAll(viewModel.filterList)
+                        diffResult.dispatchUpdatesTo(search_fragment_recycler_showfavlist.adapter!!)
+                    }
             }
-        })
     }
 
     private fun setupRecycler() {
-
         search_fragment_recycler_showfavlist.apply {
             hasFixedSize()
             layoutManager = LinearLayoutManager(context)
-
+            searchAdapter = SearchAdapter(requireContext(), viewModel.searchList)
             adapter = searchAdapter
 
         }
