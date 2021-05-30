@@ -9,4 +9,4 @@ data class SweetsModel (
         val recipe: String,
         val time: String
 
-) {}
+)

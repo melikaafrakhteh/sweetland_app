@@ -8,7 +8,6 @@
     <string name="mainactivity_list_sweets">لیست شیرینی ها</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_me">درباره ما</string>
     <string name="material">برای پختن این شیرینی به چه موادی نیاز دارم؟</string>
     <string name="making">مراحل تهیه این شیرینی به چه شکله؟</string>
@@ -34,18 +33,15 @@
     \n
     </string>
     <string name="source">مرجع این اپلیکشن: سایت irancook.ir</string>
-    <string name="internet">لطفا به اینترنت متصل شوید</string>
-    <string name="exit">خروج </string>
-    <string name="noexit">نه، دستم خورد </string>
-    <string name="yesexit">بله </string>
-    <string name="exitmessage"> واقعا می خوای بری؟</string>
     <string name="fav_sweets_text">شیرینی های مورد علاقه</string>
-    <string name="listOfSweets">لیست شیرینی ها</string>
-    <string name="listOffav">مورد علاقه ها</string>
-    <string name="me">درباره ی ما</string>
-    <string name="title_activity_splashscreen">FullscreenActivity</string>
-    <string name="search_sweets_text">نتایج جستجو</string>
     <string name="mainactivity_list_error">خطایی در دریافت اطلاعات رخ داده است</string>
     <string name="add_to_fave">به لیست علاقه مندی ها اضافه شد</string>
     <string name="remove_to_fave">از لیست علاقه مندی ها حذف شد</string>
+    <string name="sweet_image">sweet_image</string>
+    <string name="icon">icon</string>
+    <string name="timer">timer</string>
+    <string name="me_menu">درباره ی ما</string>
+    <string name="fav_menu">مورد علاقه</string>
+    <string name="home_menu">خانه</string>
+    <string name="back">back</string>
 </resources>

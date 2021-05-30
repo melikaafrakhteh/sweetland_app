@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.R
@@ -42,8 +40,8 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.itemlist_textView_showsweetname)!!
-        val image = itemView.findViewById<ImageView>(R.id.itemlist_imageView_showsweetimage)!!
-        val card = itemView.findViewById<CardView>(R.id.item_card)!!
+        private val image = itemView.findViewById<ImageView>(R.id.itemlist_imageView_showsweetimage)!!
+        private val card = itemView.findViewById<CardView>(R.id.item_card)!!
 
         fun setData(model: SweetsModel, position: Int) {
             name.text = model.name
@@ -52,8 +50,8 @@ class HomeListAdapter(private val context: Context, private val sweetList: Array
 
             card.setOnClickListener{
                 val action = R.id.action_homeFragment_to_detailFragment
-                var itemId = model.id
-                var bundle = Bundle()
+                val itemId = model.id
+                val bundle = Bundle()
 
                 bundle.putInt(Constants.ID,itemId)
                 bundle.putString(Constants.NAME,model.name)

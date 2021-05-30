@@ -13,7 +13,7 @@ abstract class BaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         if (activity is MainActivity) {
-            var mActivity = activity as MainActivity
+            val mActivity = activity as MainActivity
             mActivity.setBottomNavigationVisibility(bottomNavigationViewVisibility)
         }
     }
@@ -22,7 +22,7 @@ abstract class BaseFragment : Fragment() {
         super.onResume()
 
         if (activity is MainActivity){
-            var mActivity = activity as MainActivity
+            val mActivity = activity as MainActivity
             mActivity.setBottomNavigationVisibility(bottomNavigationViewVisibility)
         }
     }

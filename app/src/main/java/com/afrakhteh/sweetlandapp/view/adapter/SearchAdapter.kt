@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.R
@@ -15,11 +15,10 @@ import com.afrakhteh.sweetlandapp.data.model.SearchModel
 import com.afrakhteh.sweetlandapp.util.Constants
 import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
-import com.afrakhteh.sweetlandapp.view.fragments.SearchFragmentDirections
 
 class SearchAdapter(
-        private val context: Context,
-        private val searchList: ArrayList<SearchModel>
+    private val context: Context,
+    private val searchList: ArrayList<SearchModel>
 ) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
 
@@ -31,8 +30,10 @@ class SearchAdapter(
 
     override fun getItemCount() = searchList.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.sweet_second_item_layout, parent, false)
-        return ViewHolder(view)
+       return ViewHolder(
+           LayoutInflater.from(context)
+               .inflate(R.layout.sweet_second_item_layout,parent,false)
+       )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -42,9 +43,10 @@ class SearchAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val title: TextView = itemView.findViewById(R.id.second_layout_name_tv)
-        private val time: TextView = itemView.findViewById(R.id.second_layout_time_tv)
-        private val imageView: ImageView = itemView.findViewById(R.id.second_layout_image_iv)
+        private val title = itemView.findViewById<TextView>(R.id.second_layout_name_tv)
+        private val time = itemView.findViewById<TextView>(R.id.second_layout_time_tv)
+        private val imageView = itemView.findViewById<ImageView>(R.id.second_layout_image_iv)
+        private val card = itemView.findViewById<CardView>(R.id.second_item_card)
 
 
         fun setItem(model: SearchModel, position: Int) {
@@ -53,18 +55,18 @@ class SearchAdapter(
 
             imageView.loadingImage(model.image, getProgressDrawable(context))
 
-            itemView.setOnClickListener {
-                val action:Int = R.id.action_searchFragment_to_detailFragment
-                var bundle = Bundle()
+            card.setOnClickListener {
+                val action: Int = R.id.action_searchFragment_to_detailFragment
+                val bundle = Bundle()
 
-                bundle.getInt(Constants.ID,position)
-                bundle.putString(Constants.NAME,model.name)
-                bundle.putString(Constants.IMAGE,model.image)
+                bundle.getInt(Constants.ID, position)
+                bundle.putString(Constants.NAME, model.name)
+                bundle.putString(Constants.IMAGE, model.image)
                 bundle.putString(Constants.DESC, model.description)
-                bundle.putString(Constants.RECIPE,model.recipe)
-                bundle.putString(Constants.TIME,model.time)
+                bundle.putString(Constants.RECIPE, model.recipe)
+                bundle.putString(Constants.TIME, model.time)
 
-                it.findNavController().navigate(action,bundle)
+                it.findNavController().navigate(action, bundle)
             }
 
 

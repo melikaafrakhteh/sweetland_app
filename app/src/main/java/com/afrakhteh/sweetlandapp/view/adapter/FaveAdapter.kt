@@ -14,7 +14,7 @@ import com.afrakhteh.sweetlandapp.util.getProgressDrawable
 import com.afrakhteh.sweetlandapp.util.loadingImage
 import kotlinx.android.synthetic.main.sweet_second_item_layout.view.*
 
-class FaveAdapter(private val context: Context, var faveList: List<FaveModel> = mutableListOf())
+class FaveAdapter(private val context: Context, private var faveList: List<FaveModel> = mutableListOf())
     : RecyclerView.Adapter<FaveAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +29,7 @@ class FaveAdapter(private val context: Context, var faveList: List<FaveModel> = 
         holder.setData(model)
     }
 
-    public fun getAllData(fave: List<FaveModel>){
+    fun getAllData(fave: List<FaveModel>){
         faveList = fave
         notifyDataSetChanged()
     }

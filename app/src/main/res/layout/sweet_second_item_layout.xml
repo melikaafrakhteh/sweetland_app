@@ -9,7 +9,8 @@
     android:layout_margin="4dp"
     android:clickable="true"
     app:cardCornerRadius="8dp"
-    app:cardElevation="8dp">
+    app:cardElevation="8dp"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
                 android:id="@+id/second_layout_image_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/colorPrimaryDark" />
+                android:src="@color/colorPrimaryDark"
+                android:contentDescription="@string/sweet_image" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -49,7 +51,7 @@
                 android:lines="2"
                 android:padding="3dp"
                 android:theme="@style/TextAppearance.AppCompat.Title"
-                tools:text="@string/mainactivity_list_sweets" />
+                android:text="@string/mainactivity_list_sweets" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,7 +62,9 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_timer" />
+                    android:src="@drawable/ic_timer"
+                    android:contentDescription="@string/timer"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/second_layout_time_tv"

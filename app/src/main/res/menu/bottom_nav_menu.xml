@@ -3,15 +3,15 @@
     <item
         android:id="@+id/aboutMeFragment"
         android:icon="@drawable/ic_user"
-        android:title="درباره ی ما" />
+        android:title="@string/me_menu" />
 
     <item
         android:id="@+id/favFragment"
         android:icon="@drawable/ic_heart"
-        android:title="مورد علاقه" />
+        android:title="@string/fav_menu" />
 
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="خانه" />
+        android:title="@string/home_menu" />
 </menu>

@@ -80,7 +80,7 @@ class DetailFragment : BaseFragment() {
             Toast.makeText(context,getString(R.string.add_to_fave),Toast.LENGTH_LONG).show()
         }
         else if (!isItFave){
-            viewModel.RemoveFave(sweetId)
+            viewModel.removeFave(sweetId)
             fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart)
             isItFave = true
 

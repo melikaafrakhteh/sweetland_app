@@ -11,19 +11,19 @@ data class FaveModel(
         var id: Int,
 
         @ColumnInfo(name = "desc_col")
-        val description: String,
+        var description: String,
 
         @ColumnInfo(name = "image_col")
-        val image: String,
+        var image: String,
 
         @ColumnInfo(name = "name_col")
-        val name: String,
+        var name: String,
 
         @ColumnInfo(name = "recipe_col")
-        val recipe: String,
+        var recipe: String,
 
         @ColumnInfo(name = "time_col")
-        val time: String
+        var time: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".view.fragments.AboutMeFragment">
     <TextView
-        android:id="@+id/aboutme_fragment_tv_showtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/about_me"
@@ -24,7 +23,6 @@
         android:layout_marginTop="8dp">
 
         <TextView
-            android:id="@+id/aboutme_fragment_tv_abouttxt"
             android:layout_width="match_parent"
             android:layout_height="126dp"
             android:layout_marginTop="24dp"
@@ -34,7 +32,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/aboutme_fragment_tv_abouttxtcontinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -45,7 +42,6 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/aboutme_fragment_tv_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

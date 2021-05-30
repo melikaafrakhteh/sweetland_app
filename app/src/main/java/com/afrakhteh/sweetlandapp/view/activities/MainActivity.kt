@@ -2,11 +2,10 @@ package com.afrakhteh.sweetlandapp.view.activities
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.afrakhteh.sweetlandapp.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,7 +34,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavigation() {
-        main_activity_bottonnavigation_menu.setupWithNavController(fragment.findNavController())
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        main_activity_bottonnavigation_menu.setupWithNavController(navController)
     }
     fun setBottomNavigationVisibility(visibility: Int) {
         // get the reference of the bottomNavigationView and set the visibility.
