@@ -50,6 +50,11 @@ class FaveAdapter(private val context: Context, private var faveList: List<FaveM
                 val faveID = model.id
                 val bundle = Bundle()
                 bundle.getInt(Constants.ID, faveID)
+                bundle.putString(Constants.NAME, model.name)
+                bundle.putString(Constants.IMAGE, model.image)
+                bundle.putString(Constants.DESC, model.description)
+                bundle.putString(Constants.RECIPE, model.recipe)
+                bundle.putString(Constants.TIME, model.time)
                 Navigation.findNavController(it).navigate(action, bundle)
             }
         }

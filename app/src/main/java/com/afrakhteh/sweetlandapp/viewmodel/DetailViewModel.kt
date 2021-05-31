@@ -26,7 +26,7 @@ class DetailViewModel (application: Application)
     fun removeFave(id:Int){
         launch {
               FaveDataBase(getApplication()).faveDao().deleteOneItem(id)
-            Toast.makeText(getApplication(),"delete",Toast.LENGTH_LONG).show()
+             Toast.makeText(getApplication(),"delete",Toast.LENGTH_LONG).show()
         }
     }
 }

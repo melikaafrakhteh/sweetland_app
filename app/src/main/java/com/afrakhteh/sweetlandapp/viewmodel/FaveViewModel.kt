@@ -1,12 +1,14 @@
 package com.afrakhteh.sweetlandapp.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import com.afrakhteh.sweetlandapp.data.database.FaveDataBase
 import com.afrakhteh.sweetlandapp.data.model.FaveModel
-import com.afrakhteh.sweetlandapp.repository.FaveRepository
 
-class FaveViewModel(repository: FaveRepository) : ViewModel() {
+class FaveViewModel(application: Application) : BaseViewModel(application) {
 
-    val showAllFaves: LiveData<List<FaveModel>> = repository.showAllFaves()
+    private val db: FaveDataBase = FaveDataBase.invoke(application)
+   // val showAllFaves: LiveData<List<FaveModel>> = repository.showAllFaves()
+   fun showAllFaves(): LiveData<List<FaveModel>> = db.faveDao().showAllFaves()
 
 }
