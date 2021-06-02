@@ -8,7 +8,7 @@ import com.afrakhteh.sweetlandapp.data.model.FaveModel
 class FaveViewModel(application: Application) : BaseViewModel(application) {
 
     private val db: FaveDataBase = FaveDataBase.invoke(application)
-   // val showAllFaves: LiveData<List<FaveModel>> = repository.showAllFaves()
-   fun showAllFaves(): LiveData<List<FaveModel>> = db.faveDao().showAllFaves()
+    // val showAllFaves: LiveData<List<FaveModel>> = repository.showAllFaves()
+    fun showAllFaves(): LiveData<List<FaveModel>> = db.faveDao().showAllFaves()
 
 }

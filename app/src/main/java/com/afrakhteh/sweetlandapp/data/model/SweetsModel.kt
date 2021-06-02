@@ -1,6 +1,6 @@
 package com.afrakhteh.sweetlandapp.data.model
 
-data class SweetsModel (
+data class SweetsModel(
 
         var id: Int,
         val description: String,

@@ -45,7 +45,7 @@ class FavFragment : BaseFragment() {
     }
 
     private fun getAllData() {
-        viewModel.showAllFaves().observe(
+      viewModel.showAllFaves().observe(
                 viewLifecycleOwner, Observer { fave ->
             fave?.let {
                 faveAdapter.getAllData(fave)

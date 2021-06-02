@@ -7,9 +7,13 @@ import androidx.room.RoomDatabase
 import com.afrakhteh.sweetlandapp.data.model.FaveModel
 import com.afrakhteh.sweetlandapp.util.Constants
 
-@Database(entities = [FaveModel::class],
-        version = Constants.DATABASE_VERSION)
+
+@Database(
+        entities = [FaveModel::class],
+        version = Constants.DATABASE_VERSION
+)
 abstract class FaveDataBase : RoomDatabase() {
+
     abstract fun faveDao(): FaveDao
 
     companion object {
@@ -25,9 +29,12 @@ abstract class FaveDataBase : RoomDatabase() {
                     }
                 }
 
+
         private fun buidDB(context: Context) = Room.databaseBuilder(context,
                 FaveDataBase::class.java,
-                Constants.DATABASE_NAME).build()
+                Constants.DATABASE_NAME)
+                .build()
 
     }
+
 }
