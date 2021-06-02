@@ -28,7 +28,9 @@ data class FaveModel(
         var time: String,
 
         @ColumnInfo(name = Constants.FAVE_COL)
-        var isFave: Int) {
+        var isFave: Int
+        )
+{
 
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

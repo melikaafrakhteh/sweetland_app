@@ -1,7 +1,6 @@
 package com.afrakhteh.sweetlandapp.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,7 +77,11 @@ class DetailFragment : BaseFragment() {
             viewLifecycleOwner, Observer { fave ->
                 fave?.let {
                     it.forEach {
-                            fra_sweet_rece_fave_btn.isChecked = it.id == sweetId
+                        if (it.id == sweetId){
+                            fra_sweet_rece_fave_btn.isChecked = true
+                            return@forEach
+                        }
+
                     }
                 }
             }
@@ -108,7 +111,6 @@ class DetailFragment : BaseFragment() {
                 fra_sweet_rece_time_show.text = sweetTime
                 fra_sweet_rece_material_input.text = sweetRecipe
                 fra_sweet_rece_making.text = sweetDesc
-
 
             }
         })
