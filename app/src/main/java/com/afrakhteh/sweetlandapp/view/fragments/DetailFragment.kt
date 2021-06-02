@@ -27,6 +27,7 @@ class DetailFragment : BaseFragment() {
     private lateinit var sweetDesc: String
     private lateinit var sweetTime: String
     private lateinit var faveModel: FaveModel
+    private var isFave: Int = 0
 
     private lateinit var viewModel: DetailViewModel
 
@@ -48,7 +49,7 @@ class DetailFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         viewModel.fetchData(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
 
-        faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
+       faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime,isFave)
 
         showViewModelData()
         isFave()
@@ -120,7 +121,7 @@ class DetailFragment : BaseFragment() {
         sweetDesc = arguments?.getString(Constants.DESC)!!
         sweetRecipe = arguments?.getString(Constants.RECIPE)!!
         sweetTime = arguments?.getString(Constants.TIME)!!
-        Log.i("test" , sweetId.toString())
+        isFave = arguments?.getInt(Constants.FAVE)!!
     }
 
 }
