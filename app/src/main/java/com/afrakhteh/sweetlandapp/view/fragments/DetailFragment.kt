@@ -26,12 +26,14 @@ class DetailFragment : BaseFragment() {
     private lateinit var sweetDesc: String
     private lateinit var sweetTime: String
     private lateinit var faveModel: FaveModel
+    private var isFave: Int = 0
 
     private lateinit var viewModel: DetailViewModel
 
     override var bottomNavigationViewVisibility = View.GONE
 
-    private var isItFave = true
+    private var isNotStillSaveToFave = true
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -41,20 +43,30 @@ class DetailFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (isFave == 0){
+            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart)
+            isNotStillSaveToFave = true
+        }else{
+            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart_full)
+            isNotStillSaveToFave = false
+        }
+
         getBundles()
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+
         viewModel.fetchData(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
 
-        faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
+       faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime,isFave)
 
         showViewModelData()
         setCliCk(view)
 
-
     }
+
 
     private fun setCliCk(view: View) {
         fra_sweet_rece_back_btn.setOnClickListener {
@@ -73,21 +85,24 @@ class DetailFragment : BaseFragment() {
 
     private fun faveItem() {
 
-        if (isItFave) {
+        if (isNotStillSaveToFave) {
             viewModel.addToFave(faveModel)
             fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart_full)
-            isItFave = false
+            isNotStillSaveToFave = false
+            isFave = 1
             Toast.makeText(context,getString(R.string.add_to_fave),Toast.LENGTH_LONG).show()
         }
-        else if (!isItFave){
+        else {
             viewModel.removeFave(sweetId)
             fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart)
-            isItFave = true
+            isNotStillSaveToFave = true
+            isFave = 0
 
             Toast.makeText(context,getString(R.string.remove_to_fave),Toast.LENGTH_LONG).show()
         }
 
     }
+
 
     private fun showViewModelData() {
         viewModel.detail.observe(viewLifecycleOwner, Observer { model ->
@@ -110,6 +125,7 @@ class DetailFragment : BaseFragment() {
         sweetDesc = arguments?.getString(Constants.DESC)!!
         sweetRecipe = arguments?.getString(Constants.RECIPE)!!
         sweetTime = arguments?.getString(Constants.TIME)!!
+        isFave = arguments?.getInt(Constants.FAVE)!!
     }
 
 }

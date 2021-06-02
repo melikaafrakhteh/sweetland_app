@@ -29,7 +29,7 @@ class FaveAdapter(private val context: Context, private var faveList: List<FaveM
         holder.setData(model)
     }
 
-    fun getAllData(fave: List<FaveModel>){
+    fun getAllData(fave: List<FaveModel>) {
         faveList = fave
         notifyDataSetChanged()
     }
@@ -55,6 +55,7 @@ class FaveAdapter(private val context: Context, private var faveList: List<FaveM
                 bundle.putString(Constants.DESC, model.description)
                 bundle.putString(Constants.RECIPE, model.recipe)
                 bundle.putString(Constants.TIME, model.time)
+                bundle.putInt(Constants.FAVE, model.isFave)
                 Navigation.findNavController(it).navigate(action, bundle)
             }
         }

@@ -16,18 +16,20 @@ interface FaveDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateItem(model: FaveModel)
 
-    @Query(" SELECT * FROM fave_table WHERE uuid = :id")
+    @Query(" SELECT * FROM favourite_tb WHERE uuid = :id")
     fun getOneItem(id: Int): FaveModel
 
-    @Query(" SELECT * FROM fave_table WHERE uuid = :id")
+    @Query(" SELECT * FROM favourite_tb WHERE uuid = :id")
     fun getLiveDataOneItem(id: Int) : LiveData<FaveModel>
 
-    @Query(" SELECT * FROM fave_table")
+    @Query(" SELECT * FROM favourite_tb")
     fun showAllFaves(): LiveData<List<FaveModel>>
 
-    @Query(" DELETE FROM fave_table")
+    @Query(" DELETE FROM favourite_tb")
     suspend fun deleteAllItems()
 
-    @Query(" DELETE FROM fave_table WHERE id_col = :id")
+    @Query(" DELETE FROM favourite_tb WHERE id_col = :id")
     suspend fun deleteOneItem(id: Int)
+
+
 }
