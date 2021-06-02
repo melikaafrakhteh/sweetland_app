@@ -60,12 +60,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/simple_layout">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatToggleButton
                 android:id="@+id/fra_sweet_rece_fave_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:text=""
+                android:textOn=""
+                android:textOff=""
                 android:layout_marginTop="16dp"
-                android:background="@drawable/ic_heart"
+                android:background="@drawable/fav_selector"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"

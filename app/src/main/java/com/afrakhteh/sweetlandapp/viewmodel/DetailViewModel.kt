@@ -2,6 +2,7 @@ package com.afrakhteh.sweetlandapp.viewmodel
 
 import android.app.Application
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.afrakhteh.sweetlandapp.data.database.FaveDataBase
 import com.afrakhteh.sweetlandapp.data.model.FaveModel
@@ -29,4 +30,7 @@ class DetailViewModel (application: Application)
              Toast.makeText(getApplication(),"delete",Toast.LENGTH_LONG).show()
         }
     }
+
+    fun showAllFaves(): LiveData<List<FaveModel>> =  FaveDataBase(getApplication()).faveDao().showAllFaves()
+
 }

@@ -1,6 +1,7 @@
 package com.afrakhteh.sweetlandapp.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,6 @@ class DetailFragment : BaseFragment() {
 
     override var bottomNavigationViewVisibility = View.GONE
 
-    private var isItFave = true
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +51,7 @@ class DetailFragment : BaseFragment() {
         faveModel = FaveModel(sweetId, sweetDesc, sweetImage, sweetName, sweetRecipe, sweetTime)
 
         showViewModelData()
+        isFave()
         setCliCk(view)
 
 
@@ -71,19 +72,27 @@ class DetailFragment : BaseFragment() {
         Navigation.findNavController(view).navigate(action)
     }
 
+    private fun isFave() {
+        viewModel.showAllFaves().observe(
+            viewLifecycleOwner, Observer { fave ->
+                fave?.let {
+                    it.forEach {
+                            fra_sweet_rece_fave_btn.isChecked = it.id == sweetId
+                    }
+                }
+            }
+        )
+    }
+
     private fun faveItem() {
 
-        if (isItFave) {
+        if (fra_sweet_rece_fave_btn.isChecked) {
             viewModel.addToFave(faveModel)
-            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart_full)
-            isItFave = false
+            fra_sweet_rece_fave_btn.isChecked = true
             Toast.makeText(context,getString(R.string.add_to_fave),Toast.LENGTH_LONG).show()
-        }
-        else if (!isItFave){
+        } else{
             viewModel.removeFave(sweetId)
-            fra_sweet_rece_fave_btn.setImageResource(R.drawable.ic_heart)
-            isItFave = true
-
+            fra_sweet_rece_fave_btn.isChecked = false
             Toast.makeText(context,getString(R.string.remove_to_fave),Toast.LENGTH_LONG).show()
         }
 
@@ -99,6 +108,7 @@ class DetailFragment : BaseFragment() {
                 fra_sweet_rece_material_input.text = sweetRecipe
                 fra_sweet_rece_making.text = sweetDesc
 
+
             }
         })
     }
@@ -110,6 +120,7 @@ class DetailFragment : BaseFragment() {
         sweetDesc = arguments?.getString(Constants.DESC)!!
         sweetRecipe = arguments?.getString(Constants.RECIPE)!!
         sweetTime = arguments?.getString(Constants.TIME)!!
+        Log.i("test" , sweetId.toString())
     }
 
 }

@@ -49,7 +49,7 @@ class FaveAdapter(private val context: Context, private var faveList: List<FaveM
                 val action = R.id.action_favFragment_to_detailFragment
                 val faveID = model.id
                 val bundle = Bundle()
-                bundle.getInt(Constants.ID, faveID)
+                bundle.putInt(Constants.ID, faveID)
                 bundle.putString(Constants.NAME, model.name)
                 bundle.putString(Constants.IMAGE, model.image)
                 bundle.putString(Constants.DESC, model.description)
