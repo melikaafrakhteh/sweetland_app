@@ -34,6 +34,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
 }
 
 def lifeCycleExtensionVersion = '1.1.1'
@@ -93,9 +97,10 @@ dependencies {
 
     implementation "androidx.preference:preference-ktx:$preferencesVersion"
 
-    implementation 'com.wang.avi:library:2.1.3'
-
     implementation 'com.android.tools.build:aapt2:4.1.3-6503028'
+
+    def roundedimageviewVersion = '2.3.0'
+    implementation "com.makeramen:roundedimageview:$roundedimageviewVersion"
 
 
 }

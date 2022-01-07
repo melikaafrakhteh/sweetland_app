@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SweetlandApp</string>
-    <string name="app">Sweetland</string>
+    <string name="app"> سوئیت لند</string>
 
     <string name="mainactivity_text">برای یک تجربه ی شیرین آماده ای؟</string>
     <string name="mainactivity_search_hint"> رفتن به صفحه ی جستجو</string>
@@ -44,4 +44,13 @@
     <string name="fav_menu">مورد علاقه</string>
     <string name="home_menu">خانه</string>
     <string name="back">back</string>
+
+    <string name="splash_text">
+        برای یک
+        \n
+        تجربه ی شیرین
+        \n
+        آماده ای؟
+    </string>
+    <string name="splash_button_text">ورود</string>
 </resources>
