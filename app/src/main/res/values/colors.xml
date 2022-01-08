@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_700">#FF3700B3</color>
+
     <color name="black">#FF000000</color>
 
-    <color name="colorPrimary">#F9F5F0</color>
-    <color name="colorPrimaryDark">#EBCCB9</color>
-    <color name="colorAccent">#CDC7C6AB</color>
+    <color name="colorPrimary">#002130</color>
+    <color name="colorPrimaryDark">#001621</color>
+    <color name="colorAccent">#D06119</color>
 
-    <color name="back_grand">#F7E1D8</color>
+    <color name="colorBackGround">#FFFFFF</color>
 
-    <color name="main_writing_color">#212121</color>
-    <color name="secondary_writing_color">#424242</color>
-    <color name="colorAccent_font">#BEBD9F</color>
+    <color name="colorMainWriting">#212121</color>
+    <color name="colorSecondaryWriting">#424242</color>
+    <color name="colorAccentWriting">#FBFBFB</color>
+    <color name="colorAccentLightWriting">#CDFBFBFB</color>
 
 </resources>
