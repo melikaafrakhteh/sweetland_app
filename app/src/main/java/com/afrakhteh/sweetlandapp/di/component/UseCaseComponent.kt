@@ -9,6 +9,7 @@ import com.afrakhteh.sweetlandapp.model.entities.dto.ArticleDto
 import com.afrakhteh.sweetlandapp.model.entities.dto.SweetsDto
 import com.afrakhteh.sweetlandapp.model.useCase.article.GetAllArticlesUseCase
 import com.afrakhteh.sweetlandapp.model.useCase.sweets.GetAllSweetsUseCase
+import com.afrakhteh.sweetlandapp.model.useCase.sweets.SearchSweetsUseCase
 import com.afrakhteh.sweetlandapp.util.Mapper
 import dagger.Component
 
@@ -23,5 +24,6 @@ interface UseCaseComponent {
     fun exposeArticleMapper(): Mapper<ArticleEntity, ArticleDto>
 
     fun exposeGetAllSweetsUseCase(): GetAllSweetsUseCase
-    fun exposeGetAllArticleUseCase (): GetAllArticlesUseCase
+    fun exposeGetAllArticleUseCase(): GetAllArticlesUseCase
+    fun exposeSearchSweetsUseCase(): SearchSweetsUseCase
 }

@@ -117,7 +117,6 @@ class HomeFragment : Fragment() {
             putString(Strings.TIME_KEY, model.time)
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
-
     }
 
 

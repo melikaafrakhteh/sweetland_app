@@ -3,15 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.main.fragment.search.SearchFragment">
 
+    <TextView
+        android:id="@+id/searchFragmentBackTv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/ic_arrow"/>
+
     <EditText
-        android:id="@+id/search_edit"
+        android:id="@+id/searchEdit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/search_bg"
         android:drawableRight="@drawable/ic_baseline_search_24"
@@ -20,23 +30,28 @@
         android:hint="@string/search_search_hint"
         android:inputType="textPersonName"
         android:padding="8dp"
+        android:imeOptions="actionSearch"
         android:textColor="@color/colorSecondaryWriting"
         android:textColorHint="@color/colorSecondaryWriting"
         android:textSize="18sp"
         android:importantForAutofill="no" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        >
+    <ProgressBar
+        android:id="@+id/searchFragmentProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_fragment_recycler_showfavlist"
+            android:id="@+id/searchFragmentRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            tools:listitem="@layout/sweet_second_item_layout"
             android:layout_margin="24dp" />
-    </LinearLayout>
+
 
 </LinearLayout>

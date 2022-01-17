@@ -9,6 +9,7 @@ import com.afrakhteh.sweetlandapp.model.entities.dto.SweetsDto
 import com.afrakhteh.sweetlandapp.model.repository.MainRepository
 import com.afrakhteh.sweetlandapp.model.useCase.article.GetAllArticlesUseCase
 import com.afrakhteh.sweetlandapp.model.useCase.sweets.GetAllSweetsUseCase
+import com.afrakhteh.sweetlandapp.model.useCase.sweets.SearchSweetsUseCase
 import com.afrakhteh.sweetlandapp.util.Mapper
 import dagger.Module
 import dagger.Provides
@@ -31,5 +32,14 @@ class UseCaseModule {
         mapper: Mapper<ArticleEntity,ArticleDto>
     ): GetAllArticlesUseCase {
         return GetAllArticlesUseCase(repository, mapper)
+    }
+
+    @Provides
+    @UseCaseScope
+    fun provideSearchSweetsUseCase(
+        repository: MainRepository,
+        mapper: Mapper<SweetsEntity, SweetsDto>
+    ): SearchSweetsUseCase {
+        return SearchSweetsUseCase(repository, mapper)
     }
 }

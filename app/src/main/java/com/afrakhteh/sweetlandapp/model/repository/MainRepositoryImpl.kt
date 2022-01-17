@@ -1,8 +1,6 @@
 package com.afrakhteh.sweetlandapp.model.repository
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.widget.Toast
 import com.afrakhteh.sweetlandapp.di.scope.RepoScope
 import com.afrakhteh.sweetlandapp.model.data.dataSource.GetUrlImage
 import com.afrakhteh.sweetlandapp.model.data.network.SweetsApi
@@ -20,10 +18,6 @@ class MainRepositoryImpl @Inject constructor(
 
     override fun getAllSweets(): Single<List<SweetsDto>> {
         return api.getSweets()
-    }
-
-    override fun getAllSweetsForSearch(): Single<List<SweetsDto>> {
-        return api.search()
     }
 
     override fun getArticles(): Single<List<ArticleDto>> {

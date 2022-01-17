@@ -4,6 +4,7 @@ import com.afrakhteh.sweetlandapp.di.module.ViewModelModule
 import com.afrakhteh.sweetlandapp.di.module.ViewModelProvidersModule
 import com.afrakhteh.sweetlandapp.di.scope.ViewModelScope
 import com.afrakhteh.sweetlandapp.view.main.fragment.home.HomeFragment
+import com.afrakhteh.sweetlandapp.view.main.fragment.search.SearchFragment
 import dagger.Component
 
 @ViewModelScope
@@ -15,6 +16,6 @@ import dagger.Component
             UseCaseComponent::class]
 )
 interface ViewModelComponent {
-
    fun inject(fragment: HomeFragment)
+   fun inject(fragment: SearchFragment)
 }

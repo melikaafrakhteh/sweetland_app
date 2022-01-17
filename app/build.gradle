@@ -49,6 +49,9 @@ def rxJavaVersion = '2.1.1'
 def roomVersion = '2.3.0'
 def navVersion = '2.3.5'
 def preferencesVersion = '1.0.0'
+def rxRelayVersion = '3.0.1'
+def daggerVersion = '2.40.5'
+def roundedimageviewVersion = '2.3.0'
 
 dependencies {
 
@@ -105,15 +108,15 @@ dependencies {
 
     implementation 'com.android.tools.build:aapt2:4.1.3-6503028'
 
-    def roundedimageviewVersion = '2.3.0'
     implementation "com.makeramen:roundedimageview:$roundedimageviewVersion"
 
-    def daggerVersion = '2.40.5'
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation 'javax.inject:javax.inject:1'
+
+    implementation "com.jakewharton.rxrelay3:rxrelay:$rxRelayVersion"
 
 }
