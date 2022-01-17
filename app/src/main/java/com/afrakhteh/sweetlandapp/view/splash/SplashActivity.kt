@@ -34,15 +34,15 @@ class SplashActivity : AppCompatActivity() {
     private fun initialiseAnimationValue() {
         val transactionYMainTextAnimate =
                 ObjectAnimator.ofFloat(
-                        binding.splashMainTextTv, "translationY", 60f, 40f
+                        binding.splashMainTextTv, "translationY", 80f, 40f
                 )
         val alphaMainTextAnimate =
                 ObjectAnimator.ofFloat(
-                        binding.splashMainTextTv, "alpha", 0.2f, 1f
+                        binding.splashMainTextTv, "alpha", 0.1f, 1f
                 )
         val alphaPicAnimate =
                 ObjectAnimator.ofFloat(
-                        binding.splashConstraintLayout, "alpha", 0.6f, 1f
+                        binding.splashConstraintLayout, "alpha", 0.5f, 1f
                 )
         setupAnimation(transactionYMainTextAnimate,alphaMainTextAnimate,alphaPicAnimate)
     }
@@ -62,17 +62,17 @@ class SplashActivity : AppCompatActivity() {
         set.duration = Numerals.SPLASH_SCREEN_ANIMATION_DURATION
         set.addListener(object : Animator.AnimatorListener{
             override fun onAnimationStart(animation: Animator?) {}
-            override fun onAnimationEnd(animation: Animator?) {startApp()}
             override fun onAnimationCancel(animation: Animator?) {}
             override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationEnd(animation: Animator?) {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
+            }
         })
         set.start()
     }
 
-    private fun startApp() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
+
 
     private fun setupFullScreen() {
         @Suppress("DEPRECATION")

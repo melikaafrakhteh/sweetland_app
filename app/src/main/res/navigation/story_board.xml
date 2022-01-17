@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.afrakhteh.sweetlandapp.view.fragments.HomeFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,10 +15,13 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favFragment"
-        android:name="com.afrakhteh.sweetlandapp.view.fragments.FavFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.favorite.FavFragment"
         android:label="fragment_fav"
         tools:layout="@layout/fragment_fav" >
         <action
@@ -31,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.afrakhteh.sweetlandapp.view.fragments.SearchFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -43,12 +46,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutMeFragment"
-        android:name="com.afrakhteh.sweetlandapp.view.fragments.AboutMeFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.aboutMe.AboutMeFragment"
         android:label="fragment_about_me"
         tools:layout="@layout/fragment_about_me" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.afrakhteh.sweetlandapp.view.fragments.DetailFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.detail.DetailFragment"
         android:label="DetailFragment" >
         <action
             android:id="@+id/action_detailFragment_to_homeFragment"
@@ -57,5 +60,43 @@
             android:name="uuid"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="desc"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="time"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="recipe"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.afrakhteh.sweetlandapp.view.main.fragment.detail.ArticleDetailFragment"
+        android:label="fragment_article_detail"
+        tools:layout="@layout/fragment_article_detail" >
+        <action
+            android:id="@+id/action_articleDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="desc"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="source"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

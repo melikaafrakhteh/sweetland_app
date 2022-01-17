@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/drawable/fav_selector.xml" value="0.2115" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/drawable/ic_heart.xml" value="0.1" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/drawable/round_toggle_shape.xml" value="0.167" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/layout/fragment_article_detail.xml" value="0.2" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/layout/fragment_detail.xml" value="0.2" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/layout/sweet_list_row.xml" value="0.4093816631130064" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/layout/sweet_second_item_layout.xml" value="0.2" />
+        <entry key="..\:/PROJECTS/androidresume/sweetland_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18020833333333333" />
+      </map>
+    </option>
   </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

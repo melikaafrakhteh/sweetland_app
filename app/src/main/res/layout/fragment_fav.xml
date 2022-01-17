@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.fragments.FavFragment">
+    tools:context=".view.main.fragment.favorite.FavFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,14 +13,13 @@
         android:fontFamily="@font/vazir"
         android:gravity="center_horizontal"
         android:text="@string/fav_sweets_text"
-        android:textColor="@color/secondary_writing_color"
+        android:textColor="@color/colorSecondaryWriting"
         android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/aboutme_bg">
+        android:layout_marginTop="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fav_fragment_recycler_showfavlist"

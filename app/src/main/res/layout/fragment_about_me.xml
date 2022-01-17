@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".view.fragments.AboutMeFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_me"
-        android:fontFamily="@font/vazir"
-        android:textSize="30sp"
-        android:textColor="@color/secondary_writing_color"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="8dp"/>
+    android:background="@color/colorPrimaryDark"
+    tools:context=".view.main.fragment.aboutMe.AboutMeFragment">
+
+    <ImageView
+        android:id="@+id/aboutMeImage"
+        android:layout_width="140dp"
+        android:layout_height="180dp"
+        android:src="@drawable/whitecupcake"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/aboutme_bg"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="40dp"
+        android:background="@color/colorBackGround">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="126dp"
-            android:layout_marginTop="24dp"
-            android:gravity="center_horizontal"
-            android:text="@string/text_about_me"
-            android:textColor="@color/secondary_writing_color"
-            android:textSize="20sp" />
-
-        <TextView
+            android:id="@+id/aboutMeMainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="24dp"
             android:gravity="right"
-            android:text="@string/about_me_continue"
-            android:textColor="@color/colorAccent_font"
-            android:textSize="22sp" />
+            android:text="@string/text_about_me"
+            android:textColor="@color/colorMainWriting"
+            android:fontFamily="@font/shabnammedium"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/aboutMeImage"/>
 
         <TextView
+            android:id="@+id/aboutMeSecondText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="22sp"
-            android:layout_marginTop="24dp"
-            android:textColor="@color/secondary_writing_color"
-            android:text="@string/source" />
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/shabnammedium"
+            android:gravity="right"
+            android:paddingEnd="16dp"
+            android:text="@string/about_me_continue"
+            android:textColor="@color/colorSecondaryWriting"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/aboutMeRes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
+        <TextView
+            android:id="@+id/aboutMeRes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/shabnammedium"
+            android:gravity="right"
+            android:text="@string/source"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:paddingEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
-
 </LinearLayout>

@@ -4,21 +4,17 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.afrakhteh.sweetlandapp.data.database.FaveDataBase
-import com.afrakhteh.sweetlandapp.data.model.FaveModel
-import com.afrakhteh.sweetlandapp.data.model.SweetsModel
+import androidx.lifecycle.ViewModel
+import com.afrakhteh.sweetlandapp.model.data.database.FaveDataBase
+import com.afrakhteh.sweetlandapp.model.entities.FavoriteEntity
+import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 import kotlinx.coroutines.launch
 
+
 class DetailViewModel (application: Application)
-    : BaseViewModel(application) {
+    : ViewModel() {
 
-    val detail = MutableLiveData<SweetsModel>()
-
-    fun fetchData(id: Int, description: String, image: String, name: String, recipe: String, time: String) {
-        val sweet = SweetsModel(id, description, image, name, recipe, time)
-        detail.value = sweet
-    }
-    fun addToFave(model: FaveModel){
+   /* fun addToFave(model: FavoriteEntity){
         launch {
             FaveDataBase(getApplication()).faveDao().insertItem(model)
             Toast.makeText(getApplication(),"add",Toast.LENGTH_LONG).show()
@@ -31,6 +27,6 @@ class DetailViewModel (application: Application)
         }
     }
 
-    fun showAllFaves(): LiveData<List<FaveModel>> =  FaveDataBase(getApplication()).faveDao().showAllFaves()
-
+    fun showAllFaves(): LiveData<List<FavoriteEntity>> =  FaveDataBase(getApplication()).faveDao().showAllFaves()
+*/
 }

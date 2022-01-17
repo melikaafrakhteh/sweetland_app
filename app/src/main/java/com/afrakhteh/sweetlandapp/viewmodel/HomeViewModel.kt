@@ -1,47 +1,97 @@
 package com.afrakhteh.sweetlandapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.afrakhteh.sweetlandapp.data.api.SweetApiService
-import com.afrakhteh.sweetlandapp.data.model.SweetsModel
+import com.afrakhteh.sweetlandapp.di.scope.ViewModelScope
+import com.afrakhteh.sweetlandapp.model.entities.ArticleEntity
+import com.afrakhteh.sweetlandapp.model.repository.MainRepository
+import com.afrakhteh.sweetlandapp.model.useCase.article.GetAllArticlesUseCase
+import com.afrakhteh.sweetlandapp.model.useCase.sweets.GetAllSweetsUseCase
+import com.afrakhteh.sweetlandapp.util.NetworkResponse
+import com.afrakhteh.sweetlandapp.util.SingleEvent
+import com.afrakhteh.sweetlandapp.view.main.state.ArticlesState
+import com.afrakhteh.sweetlandapp.view.main.state.SweetsState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@ViewModelScope
+class HomeViewModel @Inject constructor(
+    private val getAllSweetsUseCase: GetAllSweetsUseCase,
+    private val getAllArticlesUseCase: GetAllArticlesUseCase,
+    val repository: MainRepository
+) : ViewModel() {
 
-    private val service = SweetApiService()
     private val disposable = CompositeDisposable()
 
-    val sweetList = MutableLiveData<List<SweetsModel>>()
-    val loadingError = MutableLiveData<Boolean>()
-    val loading = MutableLiveData<Boolean>()
+    private val pSweetState = MutableLiveData<SweetsState>()
+    val sweetState: LiveData<SweetsState> get() = pSweetState
 
+    private val pArticlesState = MutableLiveData<ArticlesState>()
+    val articlesState: LiveData<ArticlesState> get() = pArticlesState
 
-    fun refreshList() {
-        fetchFromServer()
+    init {
+        fetchSweetsListFromServer()
+        fetchArticlesFromServer()
     }
 
-    private fun fetchFromServer() {
-        loading.value = true
-        disposable.add(service.getSweets()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<List<SweetsModel>>() {
-                    override fun onSuccess(t: List<SweetsModel>) {
-                        loadingError.value = false
-                        loading.value = false
-                        sweetList.value = t
+    private fun fetchArticlesFromServer() {
+        getAllArticlesUseCase()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { result ->
+                when (result) {
+                    is NetworkResponse.Error -> {
+                        pArticlesState.postValue(
+                            ArticlesState(
+                                errorMessage = SingleEvent(
+                                    "خطایی در دریافت لیست مقاله ها رخ داده است"
+                                )
+                            )
+                        )
                     }
-
-                    override fun onError(e: Throwable) {
-                        loadingError.value = true
-                        loading.value = false
-                        e.printStackTrace()
+                    is NetworkResponse.Success -> {
+                        pArticlesState.postValue(
+                            ArticlesState(
+                                data = result.data ?: emptyList()
+                            )
+                        )
+                    }
+                    else -> {
                     }
                 }
-        ))
+
+            }.addTo(disposable)
+    }
+
+    private fun fetchSweetsListFromServer() {
+        getAllSweetsUseCase()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { response ->
+                when (response) {
+                    is NetworkResponse.Loading -> {
+                        pSweetState.postValue(
+                            SweetsState(loading = true)
+                        )
+                    }
+                    is NetworkResponse.Error -> {
+                        pSweetState.postValue(
+                            SweetsState(
+                                error = SingleEvent("خطایی در دریافت اطلاعات رخ داده است")
+                            )
+                        )
+                    }
+                    is NetworkResponse.Success -> {
+                        pSweetState.postValue(
+                            SweetsState(listOfSweets = response.data ?: emptyList())
+                        )
+                    }
+                }
+            }.addTo(disposable)
     }
 
     override fun onCleared() {

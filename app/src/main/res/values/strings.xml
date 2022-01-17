@@ -2,7 +2,13 @@
     <string name="app_name">SweetlandApp</string>
     <string name="app"> سوئیت لند</string>
 
-    <string name="mainactivity_text">برای یک تجربه ی شیرین آماده ای؟</string>
+    <string name="main_activity_text">
+        کدوم
+       <font color="#D06119">شیرینی</font>
+        می خوای
+        \n
+        برای امروز بپزی؟
+    </string>
     <string name="mainactivity_search_hint"> رفتن به صفحه ی جستجو</string>
     <string name="search_search_hint">جستجو</string>
     <string name="mainactivity_list_sweets">لیست شیرینی ها</string>
@@ -34,7 +40,6 @@
     </string>
     <string name="source">مرجع این اپلیکشن: سایت irancook.ir</string>
     <string name="fav_sweets_text">شیرینی های مورد علاقه</string>
-    <string name="mainactivity_list_error">خطایی در دریافت اطلاعات رخ داده است</string>
     <string name="add_to_fave">به لیست علاقه مندی ها اضافه شد</string>
     <string name="remove_to_fave">از لیست علاقه مندی ها حذف شد</string>
     <string name="sweet_image">sweet_image</string>
@@ -53,4 +58,8 @@
         آماده ای؟
     </string>
     <string name="splash_button_text">ورود</string>
+    <string name="article_title">مقاله ها</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_readmore">برای مطالعه بیشتر</string>
 </resources>

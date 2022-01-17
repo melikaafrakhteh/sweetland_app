@@ -5,122 +5,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".view.fragments.HomeFragment">
-
-
-    <TextView
-        android:id="@+id/home_fragment_tv_maintext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/mainactivity_text"
-        android:textColor="@color/main_writing_color"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+    android:background="@drawable/home_bg"
+    tools:context=".view.main.fragment.home.HomeFragment">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/icon"
-        android:src="@drawable/ic_launcher"
-        app:layout_constraintEnd_toStartOf="@+id/home_fragment_tv_maintext"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/homeFragmentAppIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/whitecupcake"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/home_fragment_tv_searchbar"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/search_bg"
-        android:drawablePadding="8dp"
-        android:gravity="right|center"
-        android:hint="@string/mainactivity_search_hint"
-        android:padding="8dp"
-        android:textColor="@color/secondary_writing_color"
-        android:textColorHint="@color/secondary_writing_color"
-        android:textSize="18sp"
-        app:drawableRightCompat="@drawable/ic_baseline_search_24"
+        android:id="@+id/homeFragmentTvMainText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/mikhakmedium"
+        android:text="@string/main_activity_text"
+        android:textColor="@color/colorAccentLightWriting"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/homeFragmentAppIcon" />
+
+    <ImageView
+        android:id="@+id/homeFragmentSearchIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/search"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_fragment_tv_maintext" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorAccentWriting"
+        tools:ignore="ContentDescription" />
 
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+    <TextView
+        android:id="@+id/homeFragmentTvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorSecondaryWriting"
+        android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_fragment_tv_searchbar">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/layout_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeFragmentRecycler"
+        android:layout_width="0dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="10dp"
+        android:elevation="10dp"
+        app:layout_constraintCircleRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeFragmentTvMainText"
+        tools:itemCount="10"
+        tools:listitem="@layout/sweet_list_row"/>
 
-            <TextView
-                android:id="@+id/home_fragment_tv_sweetlisttext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="144dp"
-                android:text="@string/mainactivity_list_sweets"
-                android:textColor="@color/secondary_writing_color"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/homeFragmentTvTitleArticle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/article_title"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/colorMainWriting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeFragmentRecycler" />
 
-            <TextView
-                android:id="@+id/home_fragment_tv_error"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mainactivity_list_error"
-                android:textColor="@color/secondary_writing_color"
-                android:textSize="20sp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/home_fragment_rvRecycler"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_fragment_tv_sweetlisttext" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_fragment_rvRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
-                android:orientation="vertical"
-                android:paddingStart="2dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="2dp"
-                android:paddingBottom="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintCircleRadius="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_fragment_tv_sweetlisttext" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeFragmentRvArticle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="60dp"
+        android:nestedScrollingEnabled="false"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbarStyle="insideInset"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeFragmentTvTitleArticle"
+        tools:listitem="@layout/sweet_second_item_layout" />
 
     <ProgressBar
-        android:id="@+id/home_fragment_progressbar_loading"
+        android:id="@+id/homeFragmentProgressbarLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
@@ -131,6 +114,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,123 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.motion.widget.MotionLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".view.fragments.DetailFragment">
+    android:background="@color/colorBackGround"
+    app:layoutDescription="@xml/fragment_detail_scene2"
+    tools:context=".view.main.fragment.detail.DetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+    <ImageView
+        android:id="@+id/sweetFragmentRecipeImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/sweet_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@color/colorAccent" />
 
-        <ImageView
-            android:id="@+id/sweet_fragment_recepie_image"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
-            tools:src="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/sweet_image" />
+    <ImageView
+        android:id="@+id/sweetFragmentRecipeBackImage"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/back"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/fra_sweet_rece_back_btn"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@id/sweet_fragment_recepie_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/sweet_fragment_recepie_image"
-            app:layout_constraintVertical_bias="0.096"
-            android:contentDescription="@string/back" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/sweetFragmentRecipeFavoriteTgBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/fav_selector"
+        android:contentDescription="@string/fav_menu"
+        android:elevation="40dp"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="405dp"
-        android:layout_height="443dp"
+        android:id="@+id/scrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeImage">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/simple_layout">
-
-            <androidx.appcompat.widget.AppCompatToggleButton
-                android:id="@+id/fra_sweet_rece_fave_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:text=""
-                android:textOn=""
-                android:textOff=""
-                android:layout_marginTop="16dp"
-                android:background="@drawable/fav_selector"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/fav_menu" />
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/fra_sweet_rece_name"
+                android:id="@+id/sweetFragmentRecipeNameTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/vazir"
-                android:gravity="center_horizontal"
                 android:textColor="@color/colorAccent"
-                android:textSize="28sp"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:textSize="24sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fra_sweet_rece_fave_btn"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="شیرینی نارگیلی" />
 
             <ImageView
-                android:id="@+id/fra_sweet_rece_time"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/sweetFragmentRecipeTimerIC"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/timer"
                 android:src="@drawable/ic_timer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fra_sweet_rece_name"
-                android:contentDescription="@string/timer" />
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeNameTv" />
 
             <TextView
-                android:id="@+id/fra_sweet_rece_time_show"
+                android:id="@+id/sweetFragmentRecipeTimerTv"
                 android:layout_width="0dp"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
-                android:src="@drawable/ic_timer"
-                app:layout_constraintBottom_toBottomOf="@+id/fra_sweet_rece_time"
-                app:layout_constraintEnd_toStartOf="@+id/fra_sweet_rece_time"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="@id/sweetFragmentRecipeTimerIC"
+                app:layout_constraintEnd_toStartOf="@id/sweetFragmentRecipeTimerIC"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fra_sweet_rece_name"
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeNameTv"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="یک ساعت" />
 
             <TextView
-                android:id="@+id/fra_sweet_rece_material"
+                android:id="@+id/sweetFragmentRecipeMaterialTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -125,31 +113,31 @@
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
                 android:text="@string/material"
-                android:textColor="@color/main_writing_color"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fra_sweet_rece_time" />
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeTimerTv" />
 
             <TextView
-                android:id="@+id/fra_sweet_rece_material_input"
+                android:id="@+id/sweetFragmentRecipeMaterialInputTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
-                android:textColor="@color/secondary_writing_color"
+                android:textColor="@color/colorSecondaryWriting"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fra_sweet_rece_material"
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeMaterialTv"
                 tools:text="تخم مرغ" />
 
             <TextView
-                android:id="@+id/fra_sweet_rece_making_textName"
+                android:id="@+id/sweetFragmentRecipeCookingTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -157,14 +145,14 @@
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
                 android:text="@string/making"
-                android:textColor="@color/main_writing_color"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fra_sweet_rece_material_input" />
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeMaterialInputTv" />
 
             <TextView
-                android:id="@+id/fra_sweet_rece_making"
+                android:id="@+id/sweetFragmentRecipeCookingInputTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -173,18 +161,14 @@
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/vazir"
                 android:gravity="right|center_vertical"
-                android:textColor="@color/secondary_writing_color"
+                android:textColor="@color/colorSecondaryWriting"
                 android:textSize="14sp"
-                android:paddingBottom="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fra_sweet_rece_making_textName"
-                app:layout_constraintVertical_bias="0.002"
+                app:layout_constraintTop_toBottomOf="@id/sweetFragmentRecipeCookingTv"
                 tools:text="ابتدا تخم مرغ را میشکنیم" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

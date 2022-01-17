@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.fragments.SearchFragment">
+    tools:context=".view.main.fragment.search.SearchFragment">
 
     <EditText
         android:id="@+id/search_edit"
@@ -20,8 +20,8 @@
         android:hint="@string/search_search_hint"
         android:inputType="textPersonName"
         android:padding="8dp"
-        android:textColor="@color/secondary_writing_color"
-        android:textColorHint="@color/secondary_writing_color"
+        android:textColor="@color/colorSecondaryWriting"
+        android:textColorHint="@color/colorSecondaryWriting"
         android:textSize="18sp"
         android:importantForAutofill="no" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
-        android:background="@drawable/aboutme_bg">
+        >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_fragment_recycler_showfavlist"
