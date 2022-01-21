@@ -2,6 +2,8 @@ package com.afrakhteh.sweetlandapp.di.module
 
 import androidx.lifecycle.ViewModel
 import com.afrakhteh.sweetlandapp.di.ViewModelKey
+import com.afrakhteh.sweetlandapp.viewmodel.DetailViewModel
+import com.afrakhteh.sweetlandapp.viewmodel.FaveViewModel
 import com.afrakhteh.sweetlandapp.viewmodel.HomeViewModel
 import com.afrakhteh.sweetlandapp.viewmodel.SearchViewModel
 import dagger.Binds
@@ -20,4 +22,14 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FaveViewModel::class)
+    fun bindFaveViewModel(viewModel: FaveViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
 }

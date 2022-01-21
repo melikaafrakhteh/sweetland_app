@@ -8,25 +8,45 @@ import androidx.lifecycle.ViewModel
 import com.afrakhteh.sweetlandapp.model.data.database.FaveDataBase
 import com.afrakhteh.sweetlandapp.model.entities.FavoriteEntity
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
+import com.afrakhteh.sweetlandapp.model.useCase.favorite.DeleteOneFavoriteUseCase
+import com.afrakhteh.sweetlandapp.model.useCase.favorite.InsertFaveUseCase
+import com.afrakhteh.sweetlandapp.model.useCase.favorite.IsSweetLikedUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class DetailViewModel (application: Application)
-    : ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val insertFaveUseCase: InsertFaveUseCase,
+    private val deleteOneFavoriteUseCase: DeleteOneFavoriteUseCase,
+    private val isSweetLikedUseCase: IsSweetLikedUseCase
+) : ViewModel() {
 
-   /* fun addToFave(model: FavoriteEntity){
-        launch {
-            FaveDataBase(getApplication()).faveDao().insertItem(model)
-            Toast.makeText(getApplication(),"add",Toast.LENGTH_LONG).show()
+    private var addJob: Job? = null
+    private var deleteJob: Job? = null
+
+
+    suspend fun isSweetsLiked(title: String): Boolean {
+        return isSweetLikedUseCase(title)
+    }
+
+    fun addToFavoriteList(sweetsEntity: SweetsEntity) {
+        addJob = CoroutineScope(Dispatchers.IO).launch {
+            insertFaveUseCase(sweetsEntity)
         }
     }
-    fun removeFave(id:Int){
-        launch {
-              FaveDataBase(getApplication()).faveDao().deleteOneItem(id)
-             Toast.makeText(getApplication(),"delete",Toast.LENGTH_LONG).show()
+
+    fun deleteFromFavorite(model: SweetsEntity) {
+        deleteJob = CoroutineScope(Dispatchers.IO).launch {
+            deleteOneFavoriteUseCase(model)
         }
     }
 
-    fun showAllFaves(): LiveData<List<FavoriteEntity>> =  FaveDataBase(getApplication()).faveDao().showAllFaves()
-*/
+    override fun onCleared() {
+        super.onCleared()
+        addJob?.cancel()
+        deleteJob?.cancel()
+    }
 }

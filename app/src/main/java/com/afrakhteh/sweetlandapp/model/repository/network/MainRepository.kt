@@ -1,4 +1,4 @@
-package com.afrakhteh.sweetlandapp.model.repository
+package com.afrakhteh.sweetlandapp.model.repository.network
 
 import com.afrakhteh.sweetlandapp.model.entities.dto.ArticleDto
 import com.afrakhteh.sweetlandapp.model.entities.dto.SweetsDto
@@ -10,3 +10,4 @@ interface MainRepository {
     fun getArticles(): Single<List<ArticleDto>>
     fun getImages(id: String):Observable<ByteArray>
 }
+

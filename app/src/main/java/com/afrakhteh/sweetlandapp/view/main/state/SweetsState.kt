@@ -6,5 +6,6 @@ import com.afrakhteh.sweetlandapp.util.SingleEvent
 data class SweetsState(
         val listOfSweets: List<SweetsEntity> = emptyList(),
         val loading: Boolean = false,
-        val error: SingleEvent<String>? = null
+        val error: SingleEvent<String>? = null,
+        val isFave: Boolean = false
 )

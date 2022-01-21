@@ -1,12 +1,10 @@
 package com.afrakhteh.sweetlandapp.view.main.fragment.home.adapter.articleList
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.databinding.SweetSecondItemLayoutBinding
 import com.afrakhteh.sweetlandapp.model.entities.ArticleEntity
-import com.afrakhteh.sweetlandapp.model.repository.MainRepository
+import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
 import com.afrakhteh.sweetlandapp.util.resize
 import com.afrakhteh.sweetlandapp.util.toBitmap
 import io.reactivex.android.schedulers.AndroidSchedulers

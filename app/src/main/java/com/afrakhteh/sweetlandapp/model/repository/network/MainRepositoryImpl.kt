@@ -1,4 +1,4 @@
-package com.afrakhteh.sweetlandapp.model.repository
+package com.afrakhteh.sweetlandapp.model.repository.network
 
 import android.content.Context
 import com.afrakhteh.sweetlandapp.di.scope.RepoScope

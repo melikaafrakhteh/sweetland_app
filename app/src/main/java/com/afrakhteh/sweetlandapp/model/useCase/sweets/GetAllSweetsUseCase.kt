@@ -3,7 +3,8 @@ package com.afrakhteh.sweetlandapp.model.useCase.sweets
 import com.afrakhteh.sweetlandapp.di.scope.UseCaseScope
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 import com.afrakhteh.sweetlandapp.model.entities.dto.SweetsDto
-import com.afrakhteh.sweetlandapp.model.repository.MainRepository
+import com.afrakhteh.sweetlandapp.model.repository.db.DbRepository
+import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
 import com.afrakhteh.sweetlandapp.util.Mapper
 import com.afrakhteh.sweetlandapp.util.NetworkResponse
 import io.reactivex.Observable

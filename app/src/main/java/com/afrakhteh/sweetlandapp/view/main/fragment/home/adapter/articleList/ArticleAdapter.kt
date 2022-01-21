@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.afrakhteh.sweetlandapp.databinding.SweetSecondItemLayoutBinding
 import com.afrakhteh.sweetlandapp.model.entities.ArticleEntity
-import com.afrakhteh.sweetlandapp.model.repository.MainRepository
+import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
 
 class ArticleAdapter(
     private val list: List<ArticleEntity>,

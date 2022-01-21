@@ -7,7 +7,7 @@ import com.afrakhteh.sweetlandapp.di.module.UseCaseModule
 object UseCaseComponentBuilder : ComponentBuilder<UseCaseComponent>() {
     override fun provideInstance(): UseCaseComponent {
         return DaggerUseCaseComponent.builder()
-                .mainActivityComponent(MainActivityComponentBuilder.getInstance())
+                .repositoryComponent(RepositoryComponentBuilder.getInstance())
                 .useCaseModule(UseCaseModule())
                 .build()
     }

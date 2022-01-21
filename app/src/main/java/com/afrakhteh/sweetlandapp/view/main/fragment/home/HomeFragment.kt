@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afrakhteh.sweetlandapp.R
@@ -21,6 +22,9 @@ import com.afrakhteh.sweetlandapp.view.main.interfaces.NavigationVisibility
 import com.afrakhteh.sweetlandapp.view.main.state.ArticlesState
 import com.afrakhteh.sweetlandapp.view.main.state.SweetsState
 import com.afrakhteh.sweetlandapp.viewmodel.HomeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -68,7 +72,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun renderSweetsList(sweetsState: SweetsState) {
         sweetsState.error?.ifNotHandled { errorMessage ->
             binding.homeFragmentTvError.text = errorMessage
@@ -83,7 +86,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecycler(listOfSweets: List<SweetsEntity>) {
-        val homeAdapter = HomeListAdapter(listOfSweets, ::goToRecipeDetail)
+        val homeAdapter = HomeListAdapter(
+            listOfSweets,
+            ::goToRecipeDetail,
+            ::addOrDeleteFromFave
+        )
         binding.homeFragmentRecycler.apply {
             hasFixedSize()
             layoutManager = LinearLayoutManager(
@@ -91,6 +98,20 @@ class HomeFragment : Fragment() {
             )
             adapter = homeAdapter
         }
+    }
+
+    private fun addOrDeleteFromFave(sweetsEntity: SweetsEntity) {
+        lifecycleScope.launch {
+            val isFave = viewModel.checkIsFave(sweetsEntity.name!!)
+            withContext(Dispatchers.Main) {
+                if (isFave) {
+                    viewModel.deleteFromFavorite(sweetsEntity)
+                } else {
+                    viewModel.addToFavoriteList(sweetsEntity)
+                }
+            }
+        }
+
     }
 
 
@@ -118,7 +139,6 @@ class HomeFragment : Fragment() {
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
     }
-
 
     private fun openSearchFragment(view: View) {
         val action = R.id.action_homeFragment_to_searchFragment

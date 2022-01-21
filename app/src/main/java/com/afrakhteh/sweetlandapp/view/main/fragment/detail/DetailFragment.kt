@@ -1,32 +1,45 @@
 package com.afrakhteh.sweetlandapp.view.main.fragment.detail
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 
 import androidx.navigation.Navigation
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.constants.Strings
 import com.afrakhteh.sweetlandapp.databinding.FragmentDetailBinding
+import com.afrakhteh.sweetlandapp.di.builder.ViewModelComponentBuilder
+import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 
 import com.afrakhteh.sweetlandapp.view.main.interfaces.NavigationVisibility
+import com.afrakhteh.sweetlandapp.viewmodel.DetailViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
 
+    @Inject
+    lateinit var viewModelProviders: ViewModelProvider.Factory
+    private val viewModel: DetailViewModel by viewModels { viewModelProviders }
+
     private var sweetId = 0
     private lateinit var sweetName: String
-    private lateinit var sweetImage: String
     private lateinit var sweetRecipe: String
     private lateinit var sweetDesc: String
     private lateinit var sweetTime: String
 
-    // private lateinit var viewModel: DetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,13 +49,28 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        ViewModelComponentBuilder.getInstance().inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         getBundles()
         showViewData()
+        checkThisSweetIsFavorite()
         setCliCk(view)
 
+    }
+
+    private fun checkThisSweetIsFavorite() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val checked = viewModel.isSweetsLiked(sweetName)
+            withContext(Dispatchers.Main) {
+                binding.sweetFragmentRecipeFavoriteTgBtn.isChecked = checked
+            }
+        }
     }
 
     override fun onResume() {
@@ -60,7 +88,21 @@ class DetailFragment : Fragment() {
     }
 
     private fun checkFavoriteBtn(view: View?) {
-
+        val sweet = SweetsEntity(
+            sweetId,
+            sweetDesc,
+            "",
+            sweetName,
+            sweetRecipe,
+            sweetTime
+        )
+        if (binding.sweetFragmentRecipeFavoriteTgBtn.isChecked) {
+            viewModel.addToFavoriteList(sweet)
+            binding.sweetFragmentRecipeFavoriteTgBtn.isChecked = true
+        } else {
+            viewModel.deleteFromFavorite(sweet)
+            binding.sweetFragmentRecipeFavoriteTgBtn.isChecked = false
+        }
     }
 
     private fun backProcess(view: View) {
@@ -75,7 +117,6 @@ class DetailFragment : Fragment() {
             sweetFragmentRecipeMaterialInputTv.text = sweetRecipe.replace(",", "\n")
             sweetFragmentRecipeCookingInputTv.text = sweetDesc.replace(".", "\n")
         }
-
     }
 
     private fun getBundles() {
@@ -85,5 +126,4 @@ class DetailFragment : Fragment() {
         sweetRecipe = arguments?.getString(Strings.RECIPE_KEY)!!
         sweetTime = arguments?.getString(Strings.TIME_KEY)!!
     }
-
 }

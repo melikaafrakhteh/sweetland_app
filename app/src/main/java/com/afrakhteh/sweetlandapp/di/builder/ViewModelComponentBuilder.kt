@@ -7,7 +7,7 @@ object ViewModelComponentBuilder: ComponentBuilder<ViewModelComponent>() {
     override fun provideInstance(): ViewModelComponent {
         return DaggerViewModelComponent.builder()
             .useCaseComponent(UseCaseComponentBuilder.getInstance())
-            .mainActivityComponent(MainActivityComponentBuilder.getInstance())
+            .repositoryComponent(RepositoryComponentBuilder.getInstance())
             .build()
     }
 }
