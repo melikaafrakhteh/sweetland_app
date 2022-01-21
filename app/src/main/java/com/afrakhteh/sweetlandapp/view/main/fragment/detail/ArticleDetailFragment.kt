@@ -1,5 +1,6 @@
 package com.afrakhteh.sweetlandapp.view.main.fragment.detail
 
+import android.app.Activity
 import android.app.Notification
 import android.content.Intent
 import android.net.Uri
@@ -8,19 +9,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.constants.Strings
 import com.afrakhteh.sweetlandapp.databinding.FragmentArticleDetailBinding
+import com.afrakhteh.sweetlandapp.di.builder.ViewModelComponentBuilder
+import com.afrakhteh.sweetlandapp.util.resize
+import com.afrakhteh.sweetlandapp.util.toBitmap
 import com.afrakhteh.sweetlandapp.view.main.interfaces.NavigationVisibility
+import com.afrakhteh.sweetlandapp.viewmodel.ArticleDetailViewModel
+import javax.inject.Inject
 
 class ArticleDetailFragment : Fragment() {
     private lateinit var binding: FragmentArticleDetailBinding
 
+    @Inject lateinit var viewModelProvider: ViewModelProvider.Factory
+    private val viewModel: ArticleDetailViewModel by viewModels {viewModelProvider}
+
     private lateinit var title: String
     private lateinit var source: String
     private lateinit var desc: String
+    private lateinit var imageUrl: String
     private var position: Int = 0
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        ViewModelComponentBuilder.getInstance().inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +50,15 @@ class ArticleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBundles()
+        viewModel.getImage(imageUrl)
         setViews()
+        viewModel.images.observe(viewLifecycleOwner, ::showImage)
+    }
+
+    private fun showImage(bytes: ByteArray?) {
+        binding.detailArticleFragmentImage.setImageBitmap(
+            bytes?.toBitmap()?.resize()
+        )
     }
 
     override fun onResume() {
@@ -67,5 +92,6 @@ class ArticleDetailFragment : Fragment() {
         desc = arguments?.getString(Strings.DESC_ARTICLE_KEY, "")!!
         source = arguments?.getString(Strings.SOURCE_ARTICLE_KEY, "")!!
         position = arguments?.getInt(Strings.POSITION_ARTICLE_KEY, 0)!!
+        imageUrl = arguments?.getString(Strings.SOURCE_URL_KEY, "")!!
     }
 }

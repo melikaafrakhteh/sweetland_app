@@ -1,7 +1,7 @@
 package com.afrakhteh.sweetlandapp.di.module
 
 import com.afrakhteh.sweetlandapp.model.data.network.mapper.ArticleEntityArticleDtoMapper
-import com.afrakhteh.sweetlandapp.model.data.network.mapper.SweetsEntityFavoriteEntityMapper
+import com.afrakhteh.sweetlandapp.model.data.database.mapper.SweetsEntityFavoriteEntityMapper
 import com.afrakhteh.sweetlandapp.model.data.network.mapper.SweetsEntitySweetsDtoMapper
 import com.afrakhteh.sweetlandapp.model.entities.ArticleEntity
 import com.afrakhteh.sweetlandapp.model.entities.FavoriteEntity

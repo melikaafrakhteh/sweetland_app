@@ -89,7 +89,8 @@ class HomeFragment : Fragment() {
         val homeAdapter = HomeListAdapter(
             listOfSweets,
             ::goToRecipeDetail,
-            ::addOrDeleteFromFave
+            ::addOrDeleteFromFave,
+            viewModel.repository
         )
         binding.homeFragmentRecycler.apply {
             hasFixedSize()
@@ -97,6 +98,7 @@ class HomeFragment : Fragment() {
                 context, LinearLayoutManager.HORIZONTAL, false
             )
             adapter = homeAdapter
+           setItemViewCacheSize(20)
         }
     }
 
@@ -123,6 +125,7 @@ class HomeFragment : Fragment() {
             putString(Strings.DESC_ARTICLE_KEY, model.description)
             putString(Strings.NAME_ARTICLE_KEY, model.title)
             putString(Strings.SOURCE_ARTICLE_KEY, model.source)
+            putString(Strings.SOURCE_URL_KEY, model.image)
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
     }
@@ -136,6 +139,7 @@ class HomeFragment : Fragment() {
             putString(Strings.NAME_KEY, model.name)
             putString(Strings.RECIPE_KEY, model.recipe)
             putString(Strings.TIME_KEY, model.time)
+            putString(Strings.Url_KEY, model.image)
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
     }

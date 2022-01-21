@@ -10,6 +10,7 @@ import com.afrakhteh.sweetlandapp.util.toBitmap
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class ArticleViewHolder(
@@ -22,22 +23,21 @@ class ArticleViewHolder(
 
     fun bind(data: ArticleEntity) {
         with(binding) {
-            secondLayoutImageIv.setImageDrawable(null)
             secondLayoutNameTv.text = data.title
             secondItemCard.setOnClickListener { onClick.invoke(data) }
         }
     }
 
     @SuppressLint("CheckResult")
-    fun loadImaged(id: String) {
-        repository.getImages(id)
-            .subscribeOn(Schedulers.io())
+    fun loadImaged(image: String) {
+        repository.getImages(image)
+            .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribeBy {
                 if (it == null) {
-                    return@subscribe
+                  return@subscribeBy
                 }
-                val bitmap = it.toBitmap().resize()
+                val bitmap = it.toBitmap()?.resize()
                 binding.secondLayoutImageIv.setImageBitmap(bitmap)
             }.addTo(disposable)
     }

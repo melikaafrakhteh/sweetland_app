@@ -10,11 +10,13 @@ object Strings {
     const val RECIPE_KEY = "recipe"
     const val DESC_KEY = "desc"
     const val TIME_KEY = "time"
+    const val Url_KEY = "url"
 
     const val POSITION_ARTICLE_KEY = "id_AR"
     const val NAME_ARTICLE_KEY = "title"
     const val DESC_ARTICLE_KEY = "article"
     const val SOURCE_ARTICLE_KEY = "source"
+    const val SOURCE_URL_KEY = "image"
 
     const val ID_COL = "id_col"
     const val NAME_COL = "name_col"

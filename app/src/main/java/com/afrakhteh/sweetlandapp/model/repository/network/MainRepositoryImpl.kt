@@ -8,6 +8,7 @@ import com.afrakhteh.sweetlandapp.model.entities.dto.ArticleDto
 import com.afrakhteh.sweetlandapp.model.entities.dto.SweetsDto
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.rxjava3.core.Completable
 import javax.inject.Inject
 
 @RepoScope
@@ -24,7 +25,7 @@ class MainRepositoryImpl @Inject constructor(
         return api.getArticles()
     }
 
-    override fun getImages(id: String): Observable<ByteArray> {
+    override fun getImages(id: String): Single<ByteArray> {
         return GetUrlImage(context).read(id)
     }
 }

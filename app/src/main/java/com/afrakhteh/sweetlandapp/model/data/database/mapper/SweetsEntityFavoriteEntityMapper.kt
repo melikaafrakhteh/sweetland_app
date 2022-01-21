@@ -1,4 +1,4 @@
-package com.afrakhteh.sweetlandapp.model.data.network.mapper
+package com.afrakhteh.sweetlandapp.model.data.database.mapper
 
 import com.afrakhteh.sweetlandapp.model.entities.FavoriteEntity
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity

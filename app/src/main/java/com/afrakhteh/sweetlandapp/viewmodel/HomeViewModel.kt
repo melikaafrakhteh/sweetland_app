@@ -126,4 +126,8 @@ class HomeViewModel @Inject constructor(
         addJob?.cancel()
         deleteJob?.cancel()
     }
+
+    suspend fun checkIsFave(name: String): Boolean {
+        return isSweetLikedUseCase(name)
+    }
 }

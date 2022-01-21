@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.afrakhteh.sweetlandapp.di.scope.ViewModelScope
 import com.afrakhteh.sweetlandapp.model.data.database.FaveDataBase
 import com.afrakhteh.sweetlandapp.model.entities.FavoriteEntity
+import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
 import com.afrakhteh.sweetlandapp.model.useCase.favorite.ShowAllFaveListUseCase
 import com.afrakhteh.sweetlandapp.view.main.state.ArticlesState
 import com.afrakhteh.sweetlandapp.view.main.state.FaveState
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 @ViewModelScope
 class FaveViewModel @Inject constructor(
-    private val showAllFaveListUseCase: ShowAllFaveListUseCase
+    private val showAllFaveListUseCase: ShowAllFaveListUseCase,
+    val repository: MainRepository
 ) : ViewModel() {
 
     private var job : Job? = null

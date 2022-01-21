@@ -30,8 +30,8 @@ class ArticleAdapter(
     }
 
     override fun onViewAttachedToWindow(holder: ArticleViewHolder) {
+        holder.loadImaged(list[holder.absoluteAdapterPosition ].image)
         super.onViewAttachedToWindow(holder)
-        holder.loadImaged((holder.absoluteAdapterPosition  + 1).toString())
     }
 
     override fun onViewDetachedFromWindow(holder: ArticleViewHolder) {

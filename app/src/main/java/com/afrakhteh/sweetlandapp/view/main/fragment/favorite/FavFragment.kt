@@ -46,8 +46,9 @@ class FavFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchAllFaveList()
-        favAdapter = FaveAdapter(::openDetailPage)
+        favAdapter = FaveAdapter(::openDetailPage, viewModel.repository)
         binding.favFragmentRecycler.adapter = favAdapter
+        binding.favFragmentRecycler.setItemViewCacheSize(20)
         viewModel.faveState.observe(viewLifecycleOwner, ::renderFaveList)
     }
 
@@ -76,6 +77,7 @@ class FavFragment : Fragment() {
             putString(Strings.NAME_KEY, sweetsEntity.name)
             putString(Strings.RECIPE_KEY, sweetsEntity.recipe)
             putString(Strings.TIME_KEY, sweetsEntity.time)
+            putString(Strings.Url_KEY, sweetsEntity.image)
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
     }

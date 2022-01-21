@@ -60,7 +60,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.searchState.observe(viewLifecycleOwner, ::renderAllList)
-        searchAdapter = SearchAdapter(::itemClick)
+        searchAdapter = SearchAdapter(::itemClick, viewModel.repository)
         setupSearch()
         binding.searchFragmentBackTv.setOnClickListener(::goToHome)
     }
@@ -79,6 +79,7 @@ class SearchFragment : Fragment() {
             putString(Strings.NAME_KEY, sweetsEntity.name)
             putString(Strings.RECIPE_KEY, sweetsEntity.recipe)
             putString(Strings.TIME_KEY, sweetsEntity.time)
+            putString(Strings.Url_KEY, sweetsEntity.image)
         }
         Navigation.findNavController(requireView()).navigate(action, bundle)
     }
@@ -92,6 +93,7 @@ class SearchFragment : Fragment() {
             binding.searchFragmentProgress.visibility = View.VISIBLE
         } else {
             binding.searchFragmentRecycler.adapter = searchAdapter
+            binding.searchFragmentRecycler.setItemViewCacheSize(20)
             searchAdapter.submitList(ArrayList(state.listOfSweets))
             binding.searchFragmentProgress.visibility = View.GONE
         }

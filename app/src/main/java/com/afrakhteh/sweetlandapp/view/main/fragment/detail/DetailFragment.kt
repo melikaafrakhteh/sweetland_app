@@ -17,6 +17,8 @@ import com.afrakhteh.sweetlandapp.constants.Strings
 import com.afrakhteh.sweetlandapp.databinding.FragmentDetailBinding
 import com.afrakhteh.sweetlandapp.di.builder.ViewModelComponentBuilder
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
+import com.afrakhteh.sweetlandapp.util.resize
+import com.afrakhteh.sweetlandapp.util.toBitmap
 
 import com.afrakhteh.sweetlandapp.view.main.interfaces.NavigationVisibility
 import com.afrakhteh.sweetlandapp.viewmodel.DetailViewModel
@@ -39,6 +41,7 @@ class DetailFragment : Fragment() {
     private lateinit var sweetRecipe: String
     private lateinit var sweetDesc: String
     private lateinit var sweetTime: String
+    private lateinit var sweetImageUrl: String
 
 
     override fun onCreateView(
@@ -58,10 +61,18 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getBundles()
+        viewModel.getImage(sweetImageUrl)
         showViewData()
         checkThisSweetIsFavorite()
+        viewModel.images.observe(viewLifecycleOwner,::showImage)
         setCliCk(view)
 
+    }
+
+    private fun showImage(bytes: ByteArray?) {
+        binding.sweetFragmentRecipeImage.setImageBitmap(
+            bytes?.toBitmap()?.resize()
+        )
     }
 
     private fun checkThisSweetIsFavorite() {
@@ -91,7 +102,7 @@ class DetailFragment : Fragment() {
         val sweet = SweetsEntity(
             sweetId,
             sweetDesc,
-            "",
+            sweetImageUrl,
             sweetName,
             sweetRecipe,
             sweetTime
@@ -125,5 +136,6 @@ class DetailFragment : Fragment() {
         sweetDesc = arguments?.getString(Strings.DESC_KEY)!!
         sweetRecipe = arguments?.getString(Strings.RECIPE_KEY)!!
         sweetTime = arguments?.getString(Strings.TIME_KEY)!!
+        sweetImageUrl = arguments?.getString(Strings.Url_KEY)!!
     }
 }

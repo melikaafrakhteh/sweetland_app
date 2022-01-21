@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
+import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
 import com.afrakhteh.sweetlandapp.model.useCase.sweets.SearchSweetsUseCase
 import com.afrakhteh.sweetlandapp.util.NetworkResponse
 import com.afrakhteh.sweetlandapp.util.SingleEvent
@@ -27,7 +28,8 @@ import javax.inject.Inject
 
 
 class SearchViewModel @Inject constructor(
-    private val searchSweetsUseCase: SearchSweetsUseCase
+    private val searchSweetsUseCase: SearchSweetsUseCase,
+    val repository: MainRepository
 ) : ViewModel() {
 
     private val disposable = CompositeDisposable()
