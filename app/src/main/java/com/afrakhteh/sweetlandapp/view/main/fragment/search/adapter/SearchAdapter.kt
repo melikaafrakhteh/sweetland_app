@@ -2,12 +2,14 @@ package com.afrakhteh.sweetlandapp.view.main.fragment.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.AnimationUtils.loadAnimation
 import androidx.recyclerview.widget.ListAdapter
+import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.databinding.SweetSecondItemLayoutBinding
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
-import com.afrakhteh.sweetlandapp.view.main.fragment.home.adapter.articleList.ArticleViewHolder
-import okhttp3.internal.Util
+
 
 
 class SearchAdapter(
@@ -23,6 +25,8 @@ private val repository: MainRepository
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
        holder.bind(getItem(position))
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_animation)
     }
 
     override fun onViewAttachedToWindow(holder: SearchViewHolder) {

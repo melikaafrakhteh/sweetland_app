@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -92,12 +93,15 @@ class SearchFragment : Fragment() {
         if (state!!.loading) {
             binding.searchFragmentProgress.visibility = View.VISIBLE
         } else {
-            binding.searchFragmentRecycler.adapter = searchAdapter
-            binding.searchFragmentRecycler.setItemViewCacheSize(20)
+            binding.searchFragmentRecycler.apply {
+                adapter = searchAdapter
+                setItemViewCacheSize(20)
+            }
             searchAdapter.submitList(ArrayList(state.listOfSweets))
             binding.searchFragmentProgress.visibility = View.GONE
         }
     }
+
 
     override fun onResume() {
         super.onResume()

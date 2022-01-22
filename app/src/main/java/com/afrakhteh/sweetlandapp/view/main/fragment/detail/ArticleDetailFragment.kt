@@ -1,5 +1,7 @@
 package com.afrakhteh.sweetlandapp.view.main.fragment.detail
 
+import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Notification
 import android.content.Intent
@@ -50,9 +52,19 @@ class ArticleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBundles()
+        setAnimation()
         viewModel.getImage(imageUrl)
         setViews()
         viewModel.images.observe(viewLifecycleOwner, ::showImage)
+    }
+
+    @SuppressLint("Recycle")
+    private fun setAnimation() {
+        val alpha = ObjectAnimator.ofFloat(
+            binding.detailArticleFragmentSourceTitleTv, "alpha",0f,1f
+        )
+        alpha.duration = 2000
+        alpha.start()
     }
 
     private fun showImage(bytes: ByteArray?) {

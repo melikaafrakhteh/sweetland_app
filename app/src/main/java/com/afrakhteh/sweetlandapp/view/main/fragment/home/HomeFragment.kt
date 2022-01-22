@@ -18,6 +18,7 @@ import com.afrakhteh.sweetlandapp.model.entities.ArticleEntity
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 import com.afrakhteh.sweetlandapp.view.main.fragment.home.adapter.articleList.ArticleAdapter
 import com.afrakhteh.sweetlandapp.view.main.fragment.home.adapter.sweetsList.HomeListAdapter
+import com.afrakhteh.sweetlandapp.view.main.fragment.home.custom.ZoomLinearLayout
 import com.afrakhteh.sweetlandapp.view.main.interfaces.NavigationVisibility
 import com.afrakhteh.sweetlandapp.view.main.state.ArticlesState
 import com.afrakhteh.sweetlandapp.view.main.state.SweetsState
@@ -94,8 +95,8 @@ class HomeFragment : Fragment() {
         )
         binding.homeFragmentRecycler.apply {
             hasFixedSize()
-            layoutManager = LinearLayoutManager(
-                context, LinearLayoutManager.HORIZONTAL, false
+            layoutManager  = ZoomLinearLayout(
+                context, LinearLayoutManager.HORIZONTAL, true
             )
             adapter = homeAdapter
            setItemViewCacheSize(20)
@@ -115,7 +116,6 @@ class HomeFragment : Fragment() {
         }
 
     }
-
 
     private fun goToArticleDetail(model: ArticleEntity) {
         val action = R.id.action_homeFragment_to_articleDetailFragment
@@ -148,7 +148,6 @@ class HomeFragment : Fragment() {
         val action = R.id.action_homeFragment_to_searchFragment
         Navigation.findNavController(view).navigate(action)
     }
-
 
     private fun checkSweetsViewsVisibility(
         progressVisibility: Int,

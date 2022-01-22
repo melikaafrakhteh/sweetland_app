@@ -3,7 +3,9 @@ package com.afrakhteh.sweetlandapp.view.main.fragment.favorite.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.ListAdapter
+import com.afrakhteh.sweetlandapp.R
 import com.afrakhteh.sweetlandapp.databinding.SweetSecondItemLayoutBinding
 import com.afrakhteh.sweetlandapp.model.entities.SweetsEntity
 import com.afrakhteh.sweetlandapp.model.repository.network.MainRepository
@@ -23,6 +25,8 @@ class FaveAdapter(
 
     override fun onBindViewHolder(holder: FaveViewHolder, position: Int) {
         holder.binding(getItem(position))
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_animation)
     }
 
     override fun onViewAttachedToWindow(holder: FaveViewHolder) {
